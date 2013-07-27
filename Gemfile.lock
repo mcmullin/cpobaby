@@ -256,6 +256,7 @@ DEPENDENCIES
   annotate
   brakeman
   capybara (= 1.1.2)
+  childprocess
   coffee-rails
   cucumber-rails
   database_cleaner
