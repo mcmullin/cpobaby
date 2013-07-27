@@ -9,4 +9,16 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+
+  # Returns the flash class
+  def flash_class(type)
+    case type
+    when :alert
+      "alert-error"
+    when :notice
+      "alert-success"
+    else
+      ""
+    end
+  end
 end

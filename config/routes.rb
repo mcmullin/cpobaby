@@ -1,12 +1,19 @@
 CPObaby::Application.routes.draw do
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
 
   root to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
-  
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+
+  devise_for :reps
+
+  devise_scope :rep do
+    match 'signup', to: 'devise/registrations#new'
+    match 'signin', to: 'devise/sessions#new'
+    match 'signout', to: 'devise/sessions#destroy', via: :delete
+  end
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

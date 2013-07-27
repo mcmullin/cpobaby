@@ -1,15 +1,15 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "CPObaby", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
-          
-            <li><%= link_to "Sign in", signin_path %></li>
-          
-        </ul>
-      </nav>
-    </div>
+<header>
+  <div class="navbar navbar-fixed-top">
+    <a href="#" class="navbar-brand">CPObaby</a>
+    <ul class="nav navbar-nav pull-right">
+      <% if rep_signed_in? %>
+        <li><%= link_to current_rep.full_name, edit_rep_registration_path %></li>
+        <li><%= link_to "Sign out", signout_path, method: "delete"  %></li>
+      <% else %>
+        <li><%= link_to "Sign up", signup_path %></li>
+        <li><%= link_to "Sign in", signin_path %></li>
+      <% end %>
+    </ul>
+    <p class="navbar-text ">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
   </div>
 </header>

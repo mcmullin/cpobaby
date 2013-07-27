@@ -12,6 +12,7 @@ gem 'nested_form'
 gem 'thin'
 gem 'foreman'
 
+gem 'faker'
 gem 'mail'
 
 # gem 'nokogiri'
