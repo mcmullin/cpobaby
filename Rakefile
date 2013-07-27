@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Cpobaby::Application.load_tasks
+CPObaby::Application.load_tasks
