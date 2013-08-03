@@ -1,0 +1,19 @@
+<%= simple_nested_form_for(@order, html: {:class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :number, input_html: { :class => "span6" } %>
+    <%= f.input :date, as: :date, start_year: 1949, end_year: Date.today.year + 1, order: [:day, :month, :year] %>
+    <%= f.simple_fields_for :line_items do |li_form| %>
+      <%= li_form.association :product, collection: Product.all, label_method: :item_and_description %>
+      <%= li_form.input :quantity %>
+      <%= li_form.input :free %>
+      <%= li_form.link_to_remove "Remove this line item" %>
+    <% end %>
+    <%= f.link_to_add "Add a line item", :line_items %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

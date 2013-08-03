@@ -2,7 +2,7 @@ CPObaby::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  root to: 'static_pages#home'
+  root              to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
@@ -10,10 +10,19 @@ CPObaby::Application.routes.draw do
   devise_for :reps
 
   devise_scope :rep do
-    match 'signup', to: 'devise/registrations#new'
-    match 'signin', to: 'devise/sessions#new'
-    match 'signout', to: 'devise/sessions#destroy', via: :delete
+    get 'signup',     to: 'devise/registrations#new',                 as: :signup
+    get 'signin',     to: 'devise/sessions#new',                      as: :signin
+    match 'signout',  to: 'devise/sessions#destroy',  via: :delete,   as: :signout
   end
+
+  resources :products do
+    collection do
+      post :import
+    end
+  end
+
+  resources :orders
+
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -69,3 +78,41 @@ CPObaby::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
+#== Route Map
+# Generated on 02 Aug 2013 23:29
+#
+#                    help        /help(.:format)               static_pages#help
+#                   about        /about(.:format)              static_pages#about
+#                 contact        /contact(.:format)            static_pages#contact
+#         new_rep_session GET    /reps/sign_in(.:format)       devise/sessions#new
+#             rep_session POST   /reps/sign_in(.:format)       devise/sessions#create
+#     destroy_rep_session DELETE /reps/sign_out(.:format)      devise/sessions#destroy
+#            rep_password POST   /reps/password(.:format)      devise/passwords#create
+#        new_rep_password GET    /reps/password/new(.:format)  devise/passwords#new
+#       edit_rep_password GET    /reps/password/edit(.:format) devise/passwords#edit
+#                         PUT    /reps/password(.:format)      devise/passwords#update
+# cancel_rep_registration GET    /reps/cancel(.:format)        devise/registrations#cancel
+#        rep_registration POST   /reps(.:format)               devise/registrations#create
+#    new_rep_registration GET    /reps/sign_up(.:format)       devise/registrations#new
+#   edit_rep_registration GET    /reps/edit(.:format)          devise/registrations#edit
+#                         PUT    /reps(.:format)               devise/registrations#update
+#                         DELETE /reps(.:format)               devise/registrations#destroy
+#                  signup GET    /signup(.:format)             devise/registrations#new
+#                  signin GET    /signin(.:format)             devise/sessions#new
+#                 signout DELETE /signout(.:format)            devise/sessions#destroy
+#         import_products POST   /products/import(.:format)    products#import
+#                products GET    /products(.:format)           products#index
+#                         POST   /products(.:format)           products#create
+#             new_product GET    /products/new(.:format)       products#new
+#            edit_product GET    /products/:id/edit(.:format)  products#edit
+#                 product GET    /products/:id(.:format)       products#show
+#                         PUT    /products/:id(.:format)       products#update
+#                         DELETE /products/:id(.:format)       products#destroy
+#                  orders GET    /orders(.:format)             orders#index
+#                         POST   /orders(.:format)             orders#create
+#               new_order GET    /orders/new(.:format)         orders#new
+#              edit_order GET    /orders/:id/edit(.:format)    orders#edit
+#                   order GET    /orders/:id(.:format)         orders#show
+#                         PUT    /orders/:id(.:format)         orders#update
+#                         DELETE /orders/:id(.:format)         orders#destroy

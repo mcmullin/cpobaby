@@ -8,16 +8,29 @@
     <%= render 'layouts/shim' %>  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   </head>
-  <body>
+  <body class="bs-docs-home">
     <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |type, message| %>
-        <div class="alert <%= flash_class type %>">
-          <button class="close" data-dismiss="alert">x</button>
-          <%= message %>
-        </div>
-      <% end %>
-      <%= yield %>
+    <div class="container bs-docs-container">
+      <div class="row">
+        <% flash.each do |type, message| %>
+          <div class="alert <%= flash_class type %>">
+            <button class="close" data-dismiss="alert">x</button>
+            <%= message %>
+          </div>
+        <% end %>
+        <% if rep_signed_in? %>
+          <div class="col-lg-2">
+            <%= render 'layouts/sidebar' %>
+          </div>
+          <div class="col-lg-10">
+            <%= yield %>
+          </div>
+        <% else %>
+          <div class="bs-masthead">
+            <%= yield %>
+          </div>
+        <% end %>
+      </div>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>

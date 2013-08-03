@@ -1,0 +1,19 @@
+<% provide(:title, 'View Product') %>
+<h1><%= "#{@product.item_number}" %></h1>
+
+<table id="products" class="table table-striped table-bordered">
+  <tr>
+    <% if current_rep.admin? %>
+      <th>(admin)</th>
+    <% end %>
+    <th>Item Number</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Retail Price</th>
+    <th>CPO</th>
+    <th>Point Value</th>
+  </tr>
+  <%= render @product %>
+</table>
+
+<%= link_to 'back to All Products', products_path %>

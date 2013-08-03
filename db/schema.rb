@@ -11,7 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727223745) do
+ActiveRecord::Schema.define(:version => 20130803024318) do
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "quantity"
+    t.boolean  "free",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
+  add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
+
+  create_table "orders", :force => true do |t|
+    t.string   "number"
+    t.date     "date"
+    t.integer  "rep_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "orders", ["number"], :name => "index_orders_on_number", :unique => true
+  add_index "orders", ["rep_id", "date"], :name => "index_orders_on_rep_id_and_date"
+
+  create_table "products", :force => true do |t|
+    t.string   "item_number"
+    t.string   "description"
+    t.string   "category"
+    t.decimal  "current_retail_price"
+    t.decimal  "current_cpo"
+    t.decimal  "current_point_value"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "products", ["item_number"], :name => "index_products_on_item_number", :unique => true
 
   create_table "reps", :force => true do |t|
     t.string   "first_name"

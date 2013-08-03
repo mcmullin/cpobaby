@@ -1,0 +1,39 @@
+<p>
+  <b>Number:</b>
+  <%= @order.number %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @order.date %>
+</p>
+
+<p>
+  <b>Office:</b>
+  
+</p>
+
+<p>
+  <b>Rep:</b>
+  <%= @order.rep.number %> (<%= @order.rep.full_name %>)
+</p>
+
+<table id="line-items" class="table table-striped table-bordered">
+  <tr>
+    <th>Quantity</th>
+    <th>Item Number</th>
+    <th>Description</th>
+    <th>X</th>
+  </tr>
+  <% for line_item in @order.line_items %>
+    <tr>
+      <td><%= line_item.quantity %></td>
+      <td><%= line_item.product.item_number %></td>
+      <td><%= line_item.product.description %></td>
+      <td><%= "FREE" if line_item.free %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

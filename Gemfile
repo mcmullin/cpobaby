@@ -18,12 +18,11 @@ gem 'mail'
 # gem 'nokogiri'
 
 # gem 'bcrypt-ruby', '~> 3.0.1'
-# gem 'faker'
 # gem 'will_paginate'
 # gem 'bootstrap-will_paginate'
 
-# gem 'roo'
-# gem 'best_in_place'
+gem 'roo'
+gem 'best_in_place'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -47,7 +46,6 @@ group :test do
   gem 'database_cleaner'
   gem 'rb-fsevent', :require => false
   gem 'growl'
-  gem 'factory_girl_rails'
   gem 'email_spec'
 end
 
