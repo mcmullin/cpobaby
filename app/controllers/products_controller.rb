@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_rep!  #only: [:show, :new, :create, :edit, :update, :destroy, :index, :import]
-  before_filter :is_admin,           only: [       :new, :create, :edit, :update, :destroy,         :import]
+  #before_filter :authenticate_rep!  #only: [:show, :new, :create, :edit, :update, :destroy, :index, :import]
+  #before_filter :is_admin,           only: [       :new, :create, :edit, :update, :destroy,         :import]
+
+  load_and_authorize_resource
 
   respond_to :html, :json
 
@@ -72,15 +74,15 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    if current_rep.admin? 
+    #if current_rep.admin? 
       proditnum = "#{@product.item_number}"
       @product.destroy 
       flash[:success] = "Product #{proditnum} removed."
       redirect_to products_url
-    else
-      flash[:error] = "You do not have permission to remove Product #{proditnum}"
-      redirect_to products_url
-    end
+    #else
+    #  flash[:error] = "You do not have permission to remove Product #{proditnum}"
+    #  redirect_to products_url
+    #end
   end
 
   def index

@@ -1,16 +1,14 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_rep!  #only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  before_filter :correct_rep,        only: [        :show,                :edit, :update          ]
-  before_filter :is_admin,           only: [                                              :destroy]
+  #before_filter :authenticate_rep!  #only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  #before_filter :correct_rep,        only: [        :show,                :edit, :update          ]
+  #before_filter :is_admin,           only: [                                              :destroy]
+
+  load_and_authorize_resource
 
   # GET /orders
   # GET /orders.json
   def index
-    if current_rep.admin?
-      @orders = Order.all
-    else
-      @orders = current_rep.orders.all
-    end
+    @orders = Order.all
 
     respond_to do |format|
       format.html # index.html.erb

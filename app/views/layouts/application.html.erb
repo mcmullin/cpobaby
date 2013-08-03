@@ -5,8 +5,8 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= render 'layouts/shim' %>
   </head>
   <body class="bs-docs-home">
     <%= render 'layouts/header' %>
@@ -18,7 +18,12 @@
             <%= message %>
           </div>
         <% end %>
-        <% if rep_signed_in? %>
+        <% if admin_signed_in? %>
+          <div class="col-lg-2"></div>
+          <div class="col-lg-10">
+            <%= yield %>
+          </div>
+        <% elsif rep_signed_in? %>
           <div class="col-lg-2">
             <%= render 'layouts/sidebar' %>
           </div>

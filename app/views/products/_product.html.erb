@@ -1,6 +1,6 @@
 <% product ||= @product %>
 <tr>
-  <% if current_rep.admin? %>
+  <% if can? :manage, @product %>
     <td>
       <% unless controller.action_name == 'show' %>
         <%= link_to 'show', product %> |
@@ -18,9 +18,9 @@
       <% end %>
     </td>
   <% end %>
-  <td><%= best_in_place_if current_rep.admin?, product, :description %></td>
-  <td><%= best_in_place_if current_rep.admin?, product, :category %></td>
-  <td><%= best_in_place_if current_rep.admin?, product, :current_retail_price, display_with: :number_to_currency %></td>
-  <td><%= best_in_place_if current_rep.admin?, product, :current_cpo %></td>
-  <td><%= best_in_place_if current_rep.admin?, product, :current_point_value %></td>
+  <td><%= best_in_place_if (can? :update, @product), product, :description %></td>
+  <td><%= best_in_place_if (can? :update, @product), product, :category %></td>
+  <td><%= best_in_place_if (can? :update, @product), product, :current_retail_price, display_with: :number_to_currency %></td>
+  <td><%= best_in_place_if (can? :update, @product), product, :current_cpo %></td>
+  <td><%= best_in_place_if (can? :update, @product), product, :current_point_value %></td>
 </tr>

@@ -3,7 +3,7 @@
 
 <table id="products" class="table table-striped table-bordered">
   <tr>
-    <% if current_rep.admin? %>
+    <% if can? :manage, @product %>
       <th>(admin)</th>
     <% end %>
     <th>Item Number</th>

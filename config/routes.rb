@@ -7,6 +7,9 @@ CPObaby::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
+  devise_for :admins
+  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :reps
 
   devise_scope :rep do
@@ -80,11 +83,17 @@ CPObaby::Application.routes.draw do
 end
 
 #== Route Map
-# Generated on 02 Aug 2013 23:29
+# Generated on 03 Aug 2013 18:54
 #
 #                    help        /help(.:format)               static_pages#help
 #                   about        /about(.:format)              static_pages#about
 #                 contact        /contact(.:format)            static_pages#contact
+#       new_admin_session GET    /admins/sign_in(.:format)     devise/sessions#new
+#           admin_session POST   /admins/sign_in(.:format)     devise/sessions#create
+#   destroy_admin_session DELETE /admins/sign_out(.:format)    devise/sessions#destroy
+#            admin_unlock POST   /admins/unlock(.:format)      devise/unlocks#create
+#        new_admin_unlock GET    /admins/unlock/new(.:format)  devise/unlocks#new
+#                         GET    /admins/unlock(.:format)      devise/unlocks#show
 #         new_rep_session GET    /reps/sign_in(.:format)       devise/sessions#new
 #             rep_session POST   /reps/sign_in(.:format)       devise/sessions#create
 #     destroy_rep_session DELETE /reps/sign_out(.:format)      devise/sessions#destroy

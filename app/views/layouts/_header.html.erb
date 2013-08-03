@@ -9,7 +9,10 @@
       </button>
       <div class="nav-collapse collapse bs-navbar-collapse">
         <ul class="nav navbar-nav pull-right">
-          <% if rep_signed_in? %>
+          <% if admin_signed_in? %>
+            <li class="navbar-text">Signed in as admin <%=current_admin.email %></li>
+            <li><%= link_to "Sign out", destroy_admin_session_path, method: "delete"  %></li>
+          <% elsif rep_signed_in? %>
             <li><%= link_to current_rep.full_name, edit_rep_registration_path %></li>
             <li><%= link_to "Sign out", signout_path, method: "delete"  %></li>
           <% else %>

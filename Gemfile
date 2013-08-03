@@ -8,7 +8,7 @@ gem 'thin'
 gem 'foreman'
 
 gem 'devise'
-gem 'rails_admin'
+#gem 'rails_admin'
 gem 'cancan'
 
 gem 'simple_form'
