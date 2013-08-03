@@ -4,15 +4,21 @@ ruby '1.9.3'
 gem 'rails', '3.2.14'
 gem 'jquery-rails'
 gem 'pg'
-
-gem 'devise'
-gem 'simple_form'
-gem 'nested_form'
-
 gem 'thin'
 gem 'foreman'
 
+gem 'devise'
+gem 'rails_admin'
+gem 'cancan'
+
+gem 'simple_form'
+gem 'nested_form'
+
+gem 'roo'
+gem 'best_in_place'
+
 gem 'faker'
+
 gem 'mail'
 
 # gem 'nokogiri'
@@ -20,9 +26,6 @@ gem 'mail'
 # gem 'bcrypt-ruby', '~> 3.0.1'
 # gem 'will_paginate'
 # gem 'bootstrap-will_paginate'
-
-gem 'roo'
-gem 'best_in_place'
 
 group :development, :test do
   gem 'rspec-rails'
