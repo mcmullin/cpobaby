@@ -8,24 +8,23 @@ gem 'thin'
 gem 'foreman'
 
 gem 'devise'
-#gem 'rails_admin'
 gem 'cancan'
-
 gem 'simple_form'
 gem 'nested_form'
-
-gem 'roo'
-gem 'best_in_place'
 
 gem 'faker'
 
 gem 'mail'
 
-# gem 'nokogiri'
-
 # gem 'bcrypt-ruby', '~> 3.0.1'
 # gem 'will_paginate'
 # gem 'bootstrap-will_paginate'
+
+# gem 'nokogiri'
+# gem 'roo'
+# gem 'smarter_csv'
+
+# gem 'best_in_place'
 
 group :development, :test do
   gem 'rspec-rails'

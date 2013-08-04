@@ -6,9 +6,7 @@
   <div>
     <%= form_tag import_products_path, multipart: true do %>
       <%= file_field_tag :file %>
-      <button type="submit" class="btn btn-primary">
         <%= submit_tag "Import Products" %>
-      </button>
     <% end %>
   </div>
   <p>download list as: <%= link_to ".csv", products_path(format: "csv") %></p>
@@ -26,7 +24,7 @@
     <th>CPO</th>
     <th>Point Value</th>
   </tr>
-  <% @products.each do |product| %>
+  <% @products.sort_by(&:position).each do |product| %>
     <%= render 'product', product: product %>
   <% end %>
 </table>

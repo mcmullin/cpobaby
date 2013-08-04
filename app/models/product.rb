@@ -24,12 +24,11 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :category, presence: true
   validates :current_retail_price, presence: true, numericality: true
-  #validates :current_cpo, numericality: true
-  #validates :current_point_value, numericality: true
-
+  # validates :current_cpo, numericality: true
+  # validates :current_point_value, numericality: true
 
   def position
-    newnum = item_number.clone
+    newnum = item_number.sub(/[-]/, '~')
     nnti ||= newnum.to_i
     if nnti < 100
       newnum = newnum.prepend('00')
@@ -43,7 +42,6 @@ class Product < ActiveRecord::Base
     item_number + ": " + description
   end
 
-
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
@@ -54,23 +52,10 @@ class Product < ActiveRecord::Base
   end
 
   def self.import(file)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      product = find_by_id(row["id"]) || new
+    CSV.foreach(file.path, headers: true) do |row|
+      product = find_by_id(row["id"]) || new # breaks import on first existing product?!!!
       product.attributes = row.to_hash.slice(*accessible_attributes)
       product.save!
-    end
-  end
-
-  def self.open_spreadsheet(file)
-    case File.extname(file.original_filename)
-    when '.csv' then Roo::Csv.new(file.path, nil, :ignore)
-    #when '.ods' then Openoffice.new(file.path, nil, :ignore)
-    #when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
-    #when '.xlsx' then Excelx.new(file.path, nil, :ignore)
-    else raise "Unknown file type: #{file.original_filename}"
     end
   end
 

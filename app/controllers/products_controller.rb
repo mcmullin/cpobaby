@@ -11,8 +11,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    #@products = Product.order(:item_number)
-    @products = Product.all.sort_by(&:position)
+    @products = Product.order(:item_number)
+    # @products = Product.all.sort_by(&:position) # broke .csv export, so moved sorting to view
     respond_to do |format|
       format.html
       format.csv { send_data @products.to_csv }
