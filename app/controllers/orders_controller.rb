@@ -8,7 +8,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    if can? :read, @order
+      @orders = Order.all
+    else
+      @orders = current_rep.orders.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,15 +92,4 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-
-    def correct_rep
-      @order = current_rep.orders.find_by_id(params[:id])
-      redirect_to root_url if @order.nil?
-    end
-
-    def is_admin
-      redirect_to(root_url) unless current_rep.admin?
-    end
 end

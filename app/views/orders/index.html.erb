@@ -4,8 +4,10 @@
   <tr>
     <th>Number</th>
     <th>Date</th>
-    <th>Office</th>
-    <th>Rep</th>
+    <% if can? :read, @order %>
+      <th>Office</th>
+      <th>Rep</th>
+    <% end %>
     <th></th>
     <th></th>
     <th></th>
@@ -15,8 +17,10 @@
   <tr>
     <td><%= order.number %></td>
     <td><%= order.date %></td>
-    <td></td>
-    <td><%= order.rep.number %> (<%= order.rep.full_name %>)</td>
+    <% if can? :read, @order %>
+      <td></td>
+      <td><%= order.rep.number %> (<%= order.rep.full_name %>)</td>
+    <% end %>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
