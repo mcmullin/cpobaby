@@ -2,15 +2,16 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.is_a?(Admin)
+    if user.kind_of?(Admin) # .kind_of? is a stricter check than .is_a? e.g. dealing with inheritance
       can :manage, :all
-    elsif user.is_a?(Rep)
-      can :create, Order
-      can :read, Order, rep_id: user.id
-      can :update, Order, rep_id: user.id
-      cannot :destroy, Order
+    elsif user.kind_of?(Rep)
+      can :manage, Order, rep_id: user.id
+      #can :create, Order
+      #can :read, Order, rep_id: user.id
+      #can :update, Order, rep_id: user.id
+      #can :destroy, Order, rep_id: user.id
 
-      can :read, Product
+      can :index, Product
 
       #can :read, :all
     else

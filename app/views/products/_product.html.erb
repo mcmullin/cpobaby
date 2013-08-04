@@ -8,19 +8,11 @@
       <%= link_to 'edit', edit_product_path(product) %> | 
       <%= link_to "destroy", product, method: :delete, data: { confirm: "You sure?" } %>
     </td>
-    <td><%= best_in_place product, :item_number %></td>
-  <% else %>
-    <td>
-      <% unless controller.action_name == 'show' %>
-        <%= link_to product.item_number, product %>
-      <% else %>
-        <%= product.item_number %>
-      <% end %>
-    </td>
   <% end %>
-  <td><%= best_in_place_if (can? :update, @product), product, :description %></td>
-  <td><%= best_in_place_if (can? :update, @product), product, :category %></td>
-  <td><%= best_in_place_if (can? :update, @product), product, :current_retail_price, display_with: :number_to_currency %></td>
-  <td><%= best_in_place_if (can? :update, @product), product, :current_cpo %></td>
-  <td><%= best_in_place_if (can? :update, @product), product, :current_point_value %></td>
+  <td><%= product.item_number %></td>
+  <td><%= product.description %></td>
+  <td><%= product.category %></td>
+  <td><%= number_to_currency(product.current_retail_price) %></td>
+  <td><%= product.current_cpo %></td>
+  <td><%= product.current_point_value %></td>
 </tr>

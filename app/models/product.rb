@@ -27,9 +27,22 @@ class Product < ActiveRecord::Base
   #validates :current_cpo, numericality: true
   #validates :current_point_value, numericality: true
 
+
+  def position
+    newnum = item_number.clone
+    nnti ||= newnum.to_i
+    if nnti < 100
+      newnum = newnum.prepend('00')
+    elsif nnti < 1000
+      newnum = newnum.prepend('0')
+    end
+    @position ||= newnum
+  end
+
   def item_and_description
     item_number + ": " + description
   end
+
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -55,8 +68,8 @@ class Product < ActiveRecord::Base
     case File.extname(file.original_filename)
     when '.csv' then Roo::Csv.new(file.path, nil, :ignore)
     #when '.ods' then Openoffice.new(file.path, nil, :ignore)
-    when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
-    when '.xlsx' then Excelx.new(file.path, nil, :ignore)
+    #when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
+    #when '.xlsx' then Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
