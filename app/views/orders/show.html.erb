@@ -1,43 +1,47 @@
-<% provide(:title, "Showing Order ##{@order.number}") %>
+<% provide(:title, "Order ##{@order.number}") %>
 
-<h2>Showing Order #<%= "#{@order.number}" %></h2>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h2>
+        Order #<%= "#{@order.number}" %> <%= link_to "Edit", edit_order_path(@order), class: 'btn btn-default pull-right' %>
+      </h2>
+    </div>
 
-<p>
-  <b>Number:</b>
-  <%= @order.number %>
-</p>
+    <p>
+      <b>Number:</b>
+      <%= @order.number %>
+    </p>
+    <p>
+      <b>Date:</b>
+      <%= @order.date %>
+    </p>
+    <p>
+      <b>Office:</b>
+      
+    </p>
+    <p>
+      <b>Rep:</b>
+      <%= @order.rep.number %> (<%= @order.rep.full_name %>)
+    </p>
 
-<p>
-  <b>Date:</b>
-  <%= @order.date %>
-</p>
+    <table id="line-items" class="table table-striped table-bordered">
+      <tr>
+        <th>Quantity</th>
+        <th>Item Number</th>
+        <th>Description</th>
+        <th>X</th>
+      </tr>
+      <% for line_item in @order.line_items %>
+        <tr>
+          <td><%= line_item.quantity %></td>
+          <td><%= line_item.product.item_number %></td>
+          <td><%= line_item.product.description %></td>
+          <td><%= "FREE" if line_item.free %></td>
+        </tr>
+      <% end %>
+    </table>
 
-<p>
-  <b>Office:</b>
-  
-</p>
-
-<p>
-  <b>Rep:</b>
-  <%= @order.rep.number %> (<%= @order.rep.full_name %>)
-</p>
-
-<table id="line-items" class="table table-striped table-bordered">
-  <tr>
-    <th>Quantity</th>
-    <th>Item Number</th>
-    <th>Description</th>
-    <th>X</th>
-  </tr>
-  <% for line_item in @order.line_items %>
-    <tr>
-      <td><%= line_item.quantity %></td>
-      <td><%= line_item.product.item_number %></td>
-      <td><%= line_item.product.description %></td>
-      <td><%= "FREE" if line_item.free %></td>
-    </tr>
-  <% end %>
-</table>
-
-<%= link_to "Edit Order ##{@order.number}", edit_order_path(@order) %> |
-<%= link_to 'back to All Orders', orders_path %>
+    <%= link_to 'back to Orders', orders_path %>
+  </div>
+</div>

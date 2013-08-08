@@ -21,10 +21,10 @@ textarea {
   background-color: #f7f5fa;
 }
 
-.form-inputs {
-  input, textarea, .uneditable-input {
-    width: 100%;
-  }
+.page-header {
+  padding-bottom: 0;
+  margin: 20px 0;
+  /* border-bottom: 1px solid #eeeeee; /* redundant */
 }
 
 .rep_remember_me {
@@ -36,6 +36,12 @@ textarea {
 .line-item {
   border-bottom: solid 1px #CCC;
   padding: 5px 0;
+}
+
+.order_line_items_quantity {
+  input, textarea, .uneditable-input {
+    width: 100%;
+  }
 }
 
 

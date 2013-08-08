@@ -1,18 +1,16 @@
 <% product ||= @product %>
 <tr>
-  <% if can? :manage, @product %>
-    <td>
-      <% unless controller.action_name == 'show' %>
-        <%= link_to 'show', product %> |
-      <% end %>
-      <%= link_to 'edit', edit_product_path(product) %> | 
-      <%= link_to "destroy", product, method: :delete, data: { confirm: "You sure?" } %>
-    </td>
-  <% end %>
   <td><%= product.item_number %></td>
   <td><%= product.description %></td>
   <td><%= product.category %></td>
   <td><%= number_to_currency(product.current_retail_price) %></td>
   <td><%= product.current_cpo %></td>
   <td><%= product.current_point_value %></td>
+  <% if can? :manage, @product %>
+    <% unless controller.action_name == 'show' %>
+      <td><%= link_to 'Show', product %></td>
+    <% end %>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to "Destroy", product, method: :delete, data: { confirm: "You sure?" } %></td>
+  <% end %>
 </tr>

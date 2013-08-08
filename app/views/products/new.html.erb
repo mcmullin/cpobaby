@@ -1,11 +1,17 @@
 <% provide(:title, 'New Product') %>
 
 <div class="row">
-  <div class="col-lg-6">
-    <h2>New Product</h2>
-
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h2>New Product</h2>
+    </div>
+  </div>
+  <div class="col-lg-5">
     <%= render 'form' %>
 
-    <%= link_to 'back to All Products', products_path %>
+    <%= link_to 'back to Products', products_path %>
+  </div>
+  <div class="col-lg-7 bs-masthead">
+    <p class="lead">What's up, boss-man?</p>
   </div>
 </div>
