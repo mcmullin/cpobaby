@@ -1,13 +1,11 @@
-<% provide(:title, "Edit Product") %> 
-<h1>Edit <%= "#{@product.item_number}" %></h1>
+<% provide(:title, "Editing Product ##{@product.item_number}" ) %>
 
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@product) do |f| %>
-      <%= render 'fields', f: f %>
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
+  <div class="col-lg-6">
+    <h2>Editing Product #<%= "#{@product.item_number}" %></h2>
+
+    <%= render 'form' %>
+
+    <%= link_to 'back to All Products', products_path %>
   </div>
 </div>
-
-<%= link_to 'back to All Products', products_path %>

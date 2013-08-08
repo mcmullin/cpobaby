@@ -1,0 +1,16 @@
+<%= simple_form_for(@product, html: { class: 'well' }, defaults: { wrapper_html: { class: 'form-group' } } ) do |f| %>
+  <%= f.error_notification %>
+  <fieldset>
+    <div class="form-inputs">
+      <%= f.input :item_number %>
+      <%= f.input :description %>
+      <%= f.input :category %>
+      <%= f.input :current_retail_price %>
+      <%= f.input :current_cpo %>
+      <%= f.input :current_point_value %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-default' %>
+    </div>
+  </fieldset>
+<% end %>

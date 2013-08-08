@@ -1,13 +1,11 @@
-<% provide(:title, 'Add Product') %>
-<h1>Add Product</h1>
+<% provide(:title, 'New Product') %>
 
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@product) do |f| %>
-      <%= render 'fields', f: f %>
-      <%= f.submit "Create product", class: "btn btn-large btn-primary" %>
-    <% end %>
+  <div class="col-lg-6">
+    <h2>New Product</h2>
+
+    <%= render 'form' %>
+
+    <%= link_to 'back to All Products', products_path %>
   </div>
 </div>
-
-<%= link_to 'back to All Products', products_path %>
