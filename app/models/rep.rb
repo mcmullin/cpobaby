@@ -26,14 +26,20 @@
 
 class Rep < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable #, :confirmable
+  # :token_authenticatable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :first_name, :last_name, :number, :email, :password, :password_confirmation, :remember_me
 
   has_many :orders
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  # validates :number, presence: true, ...
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 8 }
+  # validates :password_confirmation, presence: true
 
   def full_name
     first_name + " " + last_name

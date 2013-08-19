@@ -91,6 +91,6 @@ describe Product do
     it { should_not be_valid }
   end
 
-  # current values' numericality
+  # current values' presence, numericality
 
 end
