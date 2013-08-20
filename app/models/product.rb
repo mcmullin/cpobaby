@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   validates :item_number, presence: true, format: { with: VALID_ITEM_NUMBER_REGEX }, uniqueness: true
   validates :description, presence: true
   validates :category, presence: true
-  validates :current_retail_price, presence: true, numericality: true
+  # validates :current_retail_price, presence: true, numericality: true
   # validates :current_cpo, numericality: true
   # validates :current_point_value, numericality: true
 

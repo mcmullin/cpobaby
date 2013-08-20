@@ -11,15 +11,21 @@
 #
 
 class Order < ActiveRecord::Base
+  attr_accessible :number, :date, :rep_id, :line_items_attributes, :billing_address_attributes, :shipping_address_attributes
+
   belongs_to :rep
+
+  has_one :billing_address, class_name: 'Address', as: :addressable
+  has_one :shipping_address, class_name: 'Address', as: :addressable
+  accepts_nested_attributes_for :billing_address, :shipping_address, reject_if: lambda { |a| a[:line1].blank? }
 
   has_many :line_items, dependent: :destroy
   has_many :products, through: :line_items
   accepts_nested_attributes_for :line_items, reject_if: lambda { |a| a[:product_id].blank? }, allow_destroy: true
 
-  attr_accessible :number, :date, :rep_id, :line_items_attributes
-
   validates :number, presence: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
-  #validates :date, presence: true
+  validates :date, presence: true
   validates :rep_id, presence: true
+  validates :billing_address, presence: true
+  validates :shipping_address, presence: true
 end

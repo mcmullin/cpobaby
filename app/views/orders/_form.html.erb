@@ -2,26 +2,83 @@
   <%= f.error_notification %>
   <fieldset>
     <div class="form-inputs">
-      <%= f.input :number %>
-      <%= f.input :date, as: :date, start_year: 1949, end_year: Date.today.year + 1, order: [:day, :month, :year] %>
-      <%= f.simple_fields_for :line_items do |li_form| %>
-        <div class="row line-item">
+      <div class="row order-meta">
+        <div class="col-lg-2">
+          <%= f.input :number, label: 'Order #', hint: 'You will not be able to change this!'%>
+        </div>
+        <div class="col-lg-2">
+          <p><strong>Confirm Order #</strong></p>
+        </div>
+        <div class="col-lg-4">
+          <%= f.input :date, label: 'Order Date', 
+                      as: :date, start_year: 1949, end_year: Date.today.year + 1, order: [:day, :month, :year] %>
+        </div>
+        <div class="col-lg-2">
+          <p><strong>Office #</strong></p>
+          <p>3799</p>
+        </div>
+        <div class="col-lg-2">
+          <% if rep_signed_in? %>
+            <p><strong>Sales Rep #</strong></p>
+            <p><%= current_rep.number %></p>
+          <% elsif admin_signed_in? %>
+            <%= f.input :rep_id, collection: Rep.all, label_method: :number %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row order-addresses">
+        <div class="col-lg-6 billing-address">
+          <p><strong>Billing Address</strong></p>
+          <%= f.simple_fields_for :billing_address do |address| %>
+            <%= render partial: 'shared/address', locals: {f: address} %>
+          <% end %>
+          <p>Delivery address is the same as billing address?</p>
+        </div>
+
+        <div class="col-lg-6 shipping-address">
+          <p><strong>Delivery Address</strong></p>
+          <%= f.simple_fields_for :shipping_address do |address| %>
+            <%= render partial: 'shared/address', locals: {f: address} %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="order-line-items">
+        <div class="row">
           <div class="col-lg-1">
-            <%= li_form.input :quantity %>
+            <p><strong>Quantity</strong></p>
           </div>
           <div class="col-lg-9">
-            <%= li_form.association :product, collection: Product.all.sort_by(&:position), label_method: :item_and_description %>
+            <p><strong>Item # with color and Description</strong></p>
           </div>
           <div class="col-lg-1">
-            <%= li_form.input :free %>
-          </div>
-          <div class="col-lg-1">
-            <%= li_form.link_to_remove "Remove this line item" %>
+            <p><strong>Free?</strong></p>
           </div>
         </div>
-      <% end %>
-      <p><%= f.link_to_add "Add a line item", :line_items %></p>
+        <%= f.simple_fields_for :line_items do |li_form| %>
+          <div class="row line-item">
+            <div class="col-lg-1">
+              <p><%= li_form.input :quantity, label: false %></p>
+            </div>
+            <div class="col-lg-9">
+              <p><%= li_form.association :product, label: false, label_method: :item_and_description, 
+                                          collection: Product.all.sort_by(&:position) %></p>
+            </div>
+            <div class="col-lg-1">
+              <p><%= li_form.input :free, label: false %></p>
+            </div>
+            <div class="col-lg-1">
+              <%= li_form.link_to_remove "Remove product" %>
+            </div>
+          </div>
+        <% end %>
+        <p><%= f.link_to_add "Add a product", :line_items %></p>
+      </div>
     </div>
+
+    <br>
+
     <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-default' %>
     </div>

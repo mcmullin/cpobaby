@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     if user.kind_of? Admin # .kind_of? is a stricter check than .is_a? e.g. dealing with inheritance
       can :manage, :all
-      cannot :create, Order
+      #cannot :create, Order
     elsif user.kind_of? Rep
       can :manage, Order, rep_id: user.id
       #can :create, Order

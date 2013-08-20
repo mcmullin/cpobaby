@@ -35,7 +35,7 @@ class Rep < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # validates :number, presence: true, ...
+  validates :number, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 8 }
@@ -43,5 +43,9 @@ class Rep < ActiveRecord::Base
 
   def full_name
     first_name + " " + last_name
+  end
+
+  def number_and_full_name
+    number + " (" + self.full_name + ")"
   end
 end

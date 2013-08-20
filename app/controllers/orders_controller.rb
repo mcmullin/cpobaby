@@ -35,6 +35,8 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    @order.build_billing_address
+    @order.build_shipping_address
     4.times { @order.line_items.build(params[:order_id]) }
 
     respond_to do |format|
@@ -51,8 +53,11 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    # @order = Order.new(params[:order])
-    @order = current_rep.orders.build(params[:order])
+    if rep_signed_in?
+      @order = current_rep.orders.build(params[:order])
+    elsif admin_signed_in?
+      @order = Order.new(params[:order])
+    end
 
     respond_to do |format|
       if @order.save

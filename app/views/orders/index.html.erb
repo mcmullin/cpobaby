@@ -22,7 +22,7 @@
         <td><%= order.date %></td>
         <% if can? :read, @order %>
           <td></td>
-          <td><%= order.rep.number %> (<%= order.rep.full_name %>)</td>
+          <td><%= order.rep.number_and_full_name %></td>
         <% end %>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>

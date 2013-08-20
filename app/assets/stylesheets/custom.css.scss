@@ -33,17 +33,30 @@ textarea {
   }
 }
 
-.line-item {
+.order-meta,
+.order-addresses,
+.order-line-items {
   border-bottom: solid 1px #CCC;
   padding: 5px 0;
 }
 
-.order_line_items_quantity {
+.order-addresses {
+  .control-label {
+    font-weight: normal;
+  }
+}
+
+.order_number,
+.order_rep_id,
+.order_line_items_quantity,
+.address-lines,
+.address-city,
+.address-state,
+.address-zip {
   input, textarea, .uneditable-input {
     width: 100%;
   }
 }
-
 
 /* mixins, variables, etc. */
 
