@@ -11,7 +11,7 @@
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :number, :date, :rep_id, :line_items_attributes, :billing_address_attributes, :shipping_address_attributes
+  attr_accessible :number, :date, :rep_number, :line_items_attributes, :billing_address_attributes, :shipping_address_attributes
 
   belongs_to :rep
 
@@ -28,4 +28,12 @@ class Order < ActiveRecord::Base
   validates :rep_id, presence: true
   validates :billing_address, presence: true
   validates :shipping_address, presence: true
+
+  def rep_number
+    rep.try(:number)
+  end
+  
+  def rep_number=(number)
+    self.rep = Rep.find_by_number(number) if number.present?
+  end
 end

@@ -18,6 +18,8 @@ CPObaby::Application.routes.draw do
     match 'signout',  to: 'devise/sessions#destroy',  via: :delete,   as: :signout
   end
 
+  get "reps/index"
+
   resources :products do
     collection do
       post :import
