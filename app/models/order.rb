@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
 
   has_one :billing_address, class_name: 'Address', as: :addressable
   has_one :shipping_address, class_name: 'Address', as: :addressable
-  accepts_nested_attributes_for :billing_address, :shipping_address, reject_if: lambda { |a| a[:line1].blank? }
+  accepts_nested_attributes_for :billing_address, :shipping_address
 
   has_many :line_items, dependent: :destroy
   has_many :products, through: :line_items

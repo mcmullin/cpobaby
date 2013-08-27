@@ -13,6 +13,7 @@ section {
   overflow: auto;
 }
 
+
 textarea {
   resize: vertical;
 }
@@ -83,17 +84,19 @@ ul.ui-autocomplete {
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
-
-$grayLight: #999;
-$gray: #555;
-$grayDarker: #222;
-
+/**
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
   box-sizing: border-box;
 }
+*/
+
+$grayMediumLight: #eaeaea;
+
+$grayLight: #999;
+$gray: #555;
+$grayDarker: #222;
 
 /* footer */
 
@@ -128,13 +131,13 @@ footer {
   float: left;
   width: 100%;
   margin-top: 45px;
-  @include box_sizing;
+  /*@include box_sizing;*/
 
   background-color: #f7f5fa;
 }
 
-/* forms */
-/*
+/* forms */ 
+/**
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -147,6 +150,7 @@ input {
   height: auto !important;
 }
 */
+
 #error_explanation {
   color: #f00;
   ul {
@@ -172,7 +176,7 @@ input {
 
 body {
   position: relative; /* For scrollyspy */
-  /* ROBEDIT padding-top: 50px; /* Account for fixed navbar */
+  /** padding-top: 50px; /* Account for fixed navbar */
 }
 
 /* Custom docs button */

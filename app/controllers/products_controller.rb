@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def import
-    Product.import(params[:file])
+    Product.import(params[:import_products][:file_input])
     flash[:success] = "Products imported."
     redirect_to products_url
   end

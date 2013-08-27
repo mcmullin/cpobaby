@@ -7,14 +7,13 @@
     </div>
 
     <% if can? :manage, @product %>
-      <div>
-        <%= form_tag import_products_path, multipart: true do %>
-          <%= file_field_tag :file %>
-            <%= submit_tag "Import Products" %>
+      <div class='col-lg-4 well pull-right'>
+        <%= simple_form_for :import_products, { url: import_products_path } do |f| %>
+          <%= f.input :file_input, as: :file, required: false, hint: 'Select a .csv file', class: 'form-group' %>
+          <%= f.button :submit, "Import Products", class: 'btn btn-default' %>
         <% end %>
       </div>
-      <br />
-      <p>Download list as <%= link_to ".csv", products_path(format: "csv") %></p>
+      <p class='col-lg-4 well'>Export list of products as a <%= link_to ".csv", products_path(format: "csv") %> file</p>
     <% end %>
 
     <table id="products" class="table table-striped table-bordered">
