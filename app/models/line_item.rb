@@ -12,8 +12,10 @@
 #
 
 class LineItem < ActiveRecord::Base
+  attr_accessible :quantity, :free, :product_id, :order_id
+
   belongs_to :product
   belongs_to :order
-  
-  attr_accessible :quantity, :free, :product_id, :order_id
+
+
 end

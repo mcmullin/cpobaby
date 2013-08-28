@@ -11,13 +11,8 @@
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :number,
-                  :number_confirmation,
-                  :date,
-                  :rep_number,
-                  :billing_address_attributes,
-                  :shipping_address_attributes,
-                  :line_items_attributes
+  attr_accessible :number, :number_confirmation, :date, :rep_number,
+                  :billing_address_attributes, :shipping_address_attributes, :line_items_attributes
 
   belongs_to :rep
 

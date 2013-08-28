@@ -7,8 +7,8 @@
     <td colspan="3">DISCONTINUED</td>
   <% else %>
     <td><%= number_to_currency(product.current_retail_price) %></td>
-    <td><%= product.current_cpo %></td>
-    <td><%= product.current_point_value %></td>
+    <td><%= number_with_precision(product.current_cpo, strip_insignificant_zeros: true) %></td>
+    <td><%= number_with_precision(product.current_point_value, strip_insignificant_zeros: true) %></td>
   <% end %>
   <% if can? :manage, @product %>
     <% unless controller.action_name == 'show' %>
