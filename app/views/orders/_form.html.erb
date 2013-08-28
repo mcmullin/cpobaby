@@ -5,11 +5,10 @@
       <div class="order-meta">
         <div class="row">
           <div class="col-lg-2">
-            <%= f.input :number, label: 'Order #', hint: 'asdf'%>
+            <%= f.input :number, label: 'Order #', required: true, hint: 'asdf'%>
           </div>
           <div class="col-lg-2">
-            <p><strong>Confirm Order #</strong></p>
-            <p>number</p>
+            <%= f.input :number_confirmation, label: 'Confirm Order #'%>
           </div>
           <div class="col-lg-4">
             <%= f.input :date, label: 'Order Date', 

@@ -24,8 +24,8 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :category,    presence: true, unless: :discontinued
   validates :current_retail_price, presence: true, numericality: true, unless: :discontinued
-  # validates :current_cpo,          presence: true, numericality: true
-  # validates :current_point_value,  presence: true, numericality: true
+  validates :current_cpo,          presence: true, numericality: true, unless: :discontinued
+  validates :current_point_value,  presence: true, numericality: true, unless: :discontinued
 
   def position
     newnum = item_number.sub(/[-]/, '~')

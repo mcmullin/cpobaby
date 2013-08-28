@@ -11,7 +11,13 @@
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :number, :date, :rep_number, :line_items_attributes, :billing_address_attributes, :shipping_address_attributes
+  attr_accessible :number,
+                  :number_confirmation,
+                  :date,
+                  :rep_number,
+                  :billing_address_attributes,
+                  :shipping_address_attributes,
+                  :line_items_attributes
 
   belongs_to :rep
 
@@ -23,7 +29,8 @@ class Order < ActiveRecord::Base
   has_many :products, through: :line_items
   accepts_nested_attributes_for :line_items, reject_if: lambda { |a| a[:product_id].blank? }, allow_destroy: true
 
-  validates :number, presence: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
+  validates :number, confirmation: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
+  validates :number_confirmation, presence: true
   validates :date, presence: true
   validates :rep_id, presence: true
   validates :billing_address, presence: true
