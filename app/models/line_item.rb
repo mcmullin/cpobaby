@@ -17,5 +17,5 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
 
-
+  validates :quantity, :product_id, :order_id, presence: true
 end
