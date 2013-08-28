@@ -16,7 +16,7 @@
       <%= f.input :current_cpo,          input_html: { value: (number_with_precision(
           f.object.current_cpo,          strip_insignificant_zeros: true) || '') } %>
       <%= f.input :current_point_value,  input_html: { value: (number_with_precision(
-          f.object.current_retail_price, strip_insignificant_zeros: true) || '') } %>
+          f.object.current_point_value,  strip_insignificant_zeros: true) || '') } %>
       <%= f.input :discontinued, label: false, inline_label: true, hint: 'All fields are required unless this is checked.'%>
     </div>
     <div class="form-actions">
