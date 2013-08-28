@@ -5,7 +5,8 @@
       <div class="order-meta">
         <div class="row">
           <div class="col-lg-2">
-            <%= f.input :number, label: 'Order #', required: true, hint: 'asdf' %>
+            <%= f.input :number, label: 'Order #', required: true, hint: "can't be changed", 
+                                 disabled: (controller.action_name == 'edit' || controller.action_name == 'update') %>
           </div>
           <div class="col-lg-2">
             <%= f.input :number_confirmation, label: 'Confirm Order #', 
@@ -21,8 +22,7 @@
           </div>
           <div class="col-lg-2">
             <% if rep_signed_in? %>
-              <p><strong>Sales Rep #</strong></p>
-              <p><%= current_rep.number %></p>
+              <%= f.input :rep_number, label: 'Rep #', disabled: true, input_html: { value: current_rep.number } %>
             <% elsif admin_signed_in? %>
               <%= f.input :rep_number, label: 'Rep #', input_html: { data: { autocomplete_source: reps_index_path } } %>
             <% end %>
