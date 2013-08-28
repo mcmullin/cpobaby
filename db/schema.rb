@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130819223500) do
+ActiveRecord::Schema.define(:version => 20130828001430) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -75,8 +75,9 @@ ActiveRecord::Schema.define(:version => 20130819223500) do
     t.decimal  "current_retail_price"
     t.decimal  "current_cpo"
     t.decimal  "current_point_value"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.boolean  "discontinued",         :default => false
   end
 
   add_index "products", ["item_number"], :name => "index_products_on_item_number", :unique => true

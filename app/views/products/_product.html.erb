@@ -3,9 +3,13 @@
   <td><%= product.item_number %></td>
   <td><%= product.description %></td>
   <td><%= product.category %></td>
-  <td><%= number_to_currency(product.current_retail_price) %></td>
-  <td><%= product.current_cpo %></td>
-  <td><%= product.current_point_value %></td>
+  <% if product.discontinued %>
+    <td colspan="3">DISCONTINUED</td>
+  <% else %>
+    <td><%= number_to_currency(product.current_retail_price) %></td>
+    <td><%= product.current_cpo %></td>
+    <td><%= product.current_point_value %></td>
+  <% end %>
   <% if can? :manage, @product %>
     <% unless controller.action_name == 'show' %>
       <td><%= link_to 'Show', product %></td>
