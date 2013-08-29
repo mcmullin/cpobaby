@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
 
   validates :item_number, presence: true, format: { with: /\A\d{2,4}[-12RCWPHTSDBKG]{0,6}\z/ }, uniqueness: true
   validates :description, presence: true
-  validates :category,    presence: true, unless: :discontinued
+  validates :category,    presence: true
   validates :current_retail_price, presence: true, numericality: true, unless: :discontinued
   validates :current_cpo,          presence: true, numericality: true, unless: :discontinued
   validates :current_point_value,  presence: true, numericality: true, unless: :discontinued
