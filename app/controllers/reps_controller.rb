@@ -1,2 +1,0 @@
-class RepsController < ApplicationController
-end
