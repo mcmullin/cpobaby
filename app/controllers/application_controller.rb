@@ -14,14 +14,4 @@ class ApplicationController < ActionController::Base
             @current_ability = Ability.new(current_rep)
         end
     end
-    
-=begin
-    def current_ability
-      if current_account.kind_of?(Admin)
-        @current_ability ||= AdminAbility.new(current_account)
-      else
-        @current_ability ||= RepAbility.new(current_account)
-      end
-    end
-=end
 end

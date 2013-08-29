@@ -1,7 +1,4 @@
 class ProductsController < ApplicationController
-  #before_filter :authenticate_rep!  #only: [:show, :new, :create, :edit, :update, :destroy, :index, :import]
-  #before_filter :is_admin,           only: [       :new, :create, :edit, :update, :destroy,         :import]
-
   load_and_authorize_resource
 
   def import

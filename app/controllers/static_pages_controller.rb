@@ -1,7 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    if rep_signed_in?
-    end
   end
 
   def help

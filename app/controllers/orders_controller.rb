@@ -1,8 +1,4 @@
 class OrdersController < ApplicationController
-  #before_filter :authenticate_rep!  #only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  #before_filter :correct_rep,        only: [        :show,                :edit, :update          ]
-  #before_filter :is_admin,           only: [                                              :destroy]
-
   load_and_authorize_resource
 
   autocomplete :rep, :number, full: true
