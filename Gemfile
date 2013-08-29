@@ -43,6 +43,8 @@ group :development do
   gem 'annotate'
   gem 'brakeman'
   # gem 'guard-brakeman'
+  gem 'rubocop'
+  # gem 'guard-rubocop'
 end
 
 group :test do

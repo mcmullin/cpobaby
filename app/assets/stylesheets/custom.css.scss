@@ -49,17 +49,15 @@ textarea {
   }
 }
 
-.form-inputs {
-  .order-meta,
-  .order-addresses,
-  .order-line-items {
-    border-bottom: solid 1px #CCC;
-    padding: 5px 0;
-  }
-  .order-addresses {
-    .control-label {
-      font-weight: normal;
-    }
+.order-meta,
+.order-addresses,
+.order-line-items {
+  border-bottom: solid 1px #CCC;
+  padding: 5px 0;
+}
+.order-addresses {
+  .control-label {
+    font-weight: normal;
   }
 }
 

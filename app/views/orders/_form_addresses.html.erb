@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-lg-6 billing-address">
+    <p><strong>Customer</strong></p>
+    <p>name</p>
+    <p><strong>Billing Address</strong></p>
+    <%= f.simple_fields_for :billing_address do |address| %>
+      <%= render partial: 'shared/address_fields', locals: {f: address} %>
+    <% end %>
+    <p><strong>Phone</strong></p>
+    <p>phone</p>
+    <p><strong>Email</strong></p>
+    <p>email</p>
+  </div>
+
+  <div class="col-lg-6 shipping-address">
+    <p><strong>Ship to</strong></p>
+    <p>name</p>
+    <p><strong>Delivery Address</strong></p>
+    <%= f.simple_fields_for :shipping_address do |address| %>
+      <%= render partial: 'shared/address_fields', locals: {f: address} %>
+    <% end %>
+    <p><strong>Delivery Phone</strong></p>
+    <p>phone</p>
+    <p>Delivery name / address / phone is the same as billing?</p>
+    <p>(checkbox)</p>
+  </div>
+</div>
