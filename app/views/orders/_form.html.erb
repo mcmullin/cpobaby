@@ -2,17 +2,9 @@
   <%= f.error_notification %>
   <fieldset>
     <div class="form-inputs">
-      <div class="order-meta">
-        <%= render partial: 'form_meta', locals: { f: f } %>
-      </div>
-
-      <div class="order-addresses">
-        <%= render partial: 'form_addresses', locals: { f: f } %>
-      </div>
-
-      <div class="order-line-items">
-        <%= render partial: 'form_line_items', locals: { f: f } %>
-      </div>
+      <%= render 'form_meta', f: f %>
+      <%= render 'form_addresses', f: f %>
+      <%= render 'form_line_items', f: f %>
     </div>
     <br>
     <div class="form-actions">
