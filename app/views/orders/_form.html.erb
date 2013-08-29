@@ -14,7 +14,7 @@
           </div>
           <div class="col-lg-4">
             <%= f.input :date, label: 'Order Date', 
-                        as: :date, start_year: 1949, end_year: Date.today.year + 1, order: [:day, :month, :year] %>
+                               as: :date, start_year: 1949, end_year: Date.today.year + 1, order: [:day, :month, :year] %>
           </div>
           <div class="col-lg-2">
             <p><strong>Office #</strong></p>
@@ -22,9 +22,11 @@
           </div>
           <div class="col-lg-2">
             <% if rep_signed_in? %>
-              <%= f.input :rep_number, label: 'Rep #', disabled: true, input_html: { value: current_rep.number } %>
+              <%= f.input :rep_number, label: 'Rep #', disabled: true,
+                                       input_html: { value: current_rep.number } %>
             <% elsif admin_signed_in? %>
-              <%= f.input :rep_number, label: 'Rep #', input_html: { data: { autocomplete_source: reps_index_path } } %>
+              <%= f.input :rep_number, label: 'Rep #', required: true,
+                                       input_html: { data: { autocomplete_source: reps_index_path } } %>
             <% end %>
           </div>
         </div>
@@ -81,7 +83,7 @@
             <div class="col-lg-9">
               <p>
                 <%= li_form.association :product, label_method: :item_and_description, 
-                                        collection: Product.all.sort_by(&:position) %>
+                                                  collection: Product.all.sort_by(&:position) %>
               </p>
             </div>
             <div class="col-lg-1">

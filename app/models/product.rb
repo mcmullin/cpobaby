@@ -19,8 +19,7 @@ class Product < ActiveRecord::Base
   has_many :line_items
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  VALID_ITEM_NUMBER_REGEX = /\A\d{2,4}[-12RCWPHTSDBK]{0,6}\z/
-  validates :item_number, presence: true, format: { with: VALID_ITEM_NUMBER_REGEX }, uniqueness: true
+  validates :item_number, presence: true, format: { with: /\A\d{2,4}[-12RCWPHTSDBKG]{0,6}\z/ }, uniqueness: true
   validates :description, presence: true
   validates :category,    presence: true, unless: :discontinued
   validates :current_retail_price, presence: true, numericality: true, unless: :discontinued

@@ -61,18 +61,6 @@ textarea {
       font-weight: normal;
     }
   }
-  .order_number,
-  .order_number_confirmation,
-  .order_rep_number,
-  .order_line_items_quantity,
-  .address-lines,
-  .address-city,
-  .address-state,
-  .address-zip {
-    input, textarea, .uneditable-input {
-      width: 100%;
-    }
-  }
 }
 
 ul.ui-autocomplete {
