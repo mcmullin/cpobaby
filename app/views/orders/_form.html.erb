@@ -26,7 +26,7 @@
                                        input_html: { value: current_rep.number } %>
             <% elsif admin_signed_in? %>
               <%= f.input :rep_number, label: 'Rep #', required: true,
-                                       input_html: { data: { autocomplete_source: reps_index_path } } %>
+                                       url: autocomplete_rep_number_orders_path, as: :autocomplete %>
             <% end %>
           </div>
         </div>

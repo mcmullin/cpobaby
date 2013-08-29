@@ -26,7 +26,9 @@ CPObaby::Application.routes.draw do
     end
   end
 
-  resources :orders
+  resources :orders do
+    get :autocomplete_rep_number, on: :collection
+  end
 
 
   # Sample of regular route:

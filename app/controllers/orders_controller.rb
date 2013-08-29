@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
 
   load_and_authorize_resource
 
+  autocomplete :rep, :number, full: true
+
   # GET /orders
   # GET /orders.json
   def index

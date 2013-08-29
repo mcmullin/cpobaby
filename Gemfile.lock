@@ -182,6 +182,8 @@ GEM
       activesupport (= 3.2.14)
       bundler (~> 1.0)
       railties (= 3.2.14)
+    rails3-jquery-autocomplete (1.0.11)
+      rails (~> 3.0)
     railties (3.2.14)
       actionpack (= 3.2.14)
       activesupport (= 3.2.14)
@@ -291,6 +293,7 @@ DEPENDENCIES
   nested_form
   pg
   rails (= 3.2.14)
+  rails3-jquery-autocomplete
   rb-fsevent
   rspec-rails
   sass-rails
