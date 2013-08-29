@@ -23,7 +23,11 @@
             <%= render 'layouts/sidebar' %>
           </div>
           <div class="col-lg-10">
-            <%= yield %>
+            <div class="row">
+              <div class="col-lg-12">
+                <%= yield %>
+              </div>
+            </div>
           </div>
         <% else %>
           <%= yield %>

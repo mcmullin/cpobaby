@@ -1,13 +1,9 @@
 <% provide(:title, 'New Product') %>
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="page-header">
-      <h2>New Product</h2>
-    </div>
-
-    <%= render 'form' %>
-
-    <%= link_to 'back to Products', products_path %>
-  </div>
+<div class="page-header">
+  <h2>New Product</h2>
 </div>
+
+<%= render 'form' %>
+
+<%= link_to 'back to Products', products_path %>
