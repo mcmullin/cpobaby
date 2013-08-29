@@ -2,22 +2,28 @@
   <%= f.error_notification %>
   <fieldset>
     <div class="form-inputs">
-      <%= f.input :item_number %>
-      <%= f.input :description %>
-      <%= f.input :category %>
-      <div class="control-group string optional product_current_retail_price form-group">
-        <%= f.label :current_retail_price %>
-        <div class='controls input-group'>
-          <span class="input-group-addon">$</span>
-          <%= f.input_field :current_retail_price,
-                            value: (number_with_precision(f.object.current_retail_price, precision: 2) || '') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.input :item_number %>
+          <%= f.input :description %>
+          <%= f.input :category %>
+          <%= f.input :discontinued, label: false, inline_label: true, hint: 'All fields are required unless this is checked.'%>
+        </div>
+        <div class="col-lg-6">
+          <div class="control-group string optional product_current_retail_price form-group">
+            <%= f.label :current_retail_price %>
+            <div class='controls input-group'>
+              <span class="input-group-addon">$</span>
+              <%= f.input_field :current_retail_price,
+                                value: (number_with_precision(f.object.current_retail_price, precision: 2) || '') %>
+            </div>
+          </div>
+          <%= f.input :current_cpo,          input_html: { value: (number_with_precision(
+              f.object.current_cpo,          strip_insignificant_zeros: true) || '') } %>
+          <%= f.input :current_point_value,  input_html: { value: (number_with_precision(
+              f.object.current_point_value,  strip_insignificant_zeros: true) || '') } %>
         </div>
       </div>
-      <%= f.input :current_cpo,          input_html: { value: (number_with_precision(
-          f.object.current_cpo,          strip_insignificant_zeros: true) || '') } %>
-      <%= f.input :current_point_value,  input_html: { value: (number_with_precision(
-          f.object.current_point_value,  strip_insignificant_zeros: true) || '') } %>
-      <%= f.input :discontinued, label: false, inline_label: true, hint: 'All fields are required unless this is checked.'%>
     </div>
     <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-default' %>
