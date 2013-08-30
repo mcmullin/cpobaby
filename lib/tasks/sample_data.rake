@@ -29,6 +29,7 @@ end
 
 def make_products
   Product.import(File.open("#{Rails.root}/public/products.csv"))
+  Product.all.each { |product| product.confirm! }
 end
 
 def make_orders

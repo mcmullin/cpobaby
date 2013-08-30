@@ -21,14 +21,36 @@ class Product < ActiveRecord::Base
   before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :item_number, presence: true, format: { with: /\A\d{2,4}[-12RCWPHTSDBKG]{0,6}\z/ }, uniqueness: true
-  validates :description, presence: true
-  validates :category,    presence: true
-  validates :current_retail_price, presence: true, numericality: true, unless: :discontinued
-  validates :current_cpo,          presence: true, numericality: true, unless: :discontinued
-  validates :current_point_value,  presence: true, numericality: true, unless: :discontinued
-  validates :current_retail_price, absence: true, if: :discontinued
-  validates :current_cpo,          absence: true, if: :discontinued
-  validates :current_point_value,  absence: true, if: :discontinued
+
+  state_machine :state, initial: :incomplete do
+    # after_transition any => :pending_confirmation, do: [:notify_moderators]
+
+    event :submit do
+      transition :incomplete => :pending # i.e. pending confirmation
+    end
+
+    event :confirm do
+      transition any => :confirmed
+    end
+
+    event :revise do
+      transition :confirmed => :pending
+    end
+
+    state :pending do
+      validates :description, presence: true
+    end
+
+    state :confirmed do
+      validates :category,             presence: true
+      validates :current_retail_price, presence: true, numericality: true, unless: :discontinued
+      validates :current_cpo,          presence: true, numericality: true, unless: :discontinued
+      validates :current_point_value,  presence: true, numericality: true, unless: :discontinued
+      validates :current_retail_price, absence: true, if: :discontinued
+      validates :current_cpo,          absence: true, if: :discontinued
+      validates :current_point_value,  absence: true, if: :discontinued
+    end
+  end
 
   def position
     newnum = item_number.sub(/[-]/, '~')
