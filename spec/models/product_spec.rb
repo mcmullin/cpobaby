@@ -11,6 +11,7 @@
 #  current_point_value  :decimal(, )
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  discontinued         :boolean          default(FALSE)
 #
 
 require 'spec_helper'
