@@ -3,6 +3,11 @@
 
 body {
   padding-top: 60px;
+  /* font-family: 'Menlo'; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* font-family: 'Menlo'; */
 }
 
 html {
@@ -35,6 +40,25 @@ textarea {
 .table > tbody > tr.active > th,
 .table > tfoot > tr.active > th {
   background-color: #f7f5fa;
+}
+
+.table {
+  tr {
+    td {
+      font-family: 'Menlo';
+    }
+  }
+}
+
+input.form-control,
+textarea.form-control,
+select.form-control {
+  font-family: 'Menlo';
+}
+
+.label {
+  font-family: 'Monaco';
+  /* Monaco, Menlo, Consolas, 'Courier New', monospace */
 }
 
 .page-header {
