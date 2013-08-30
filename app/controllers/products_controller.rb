@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
-      flash[:success] = "Product updated"
+      flash[:success] = "Product #{@product.item_number} updated"
       redirect_to products_url
     else
       render 'edit'
@@ -50,9 +50,9 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    proditnum = "#{@product.item_number}"
+    product_item_number = "#{@product.item_number}"
     @product.destroy 
-    flash[:success] = "Product #{proditnum} removed."
+    flash[:success] = "Product #{product_item_number} removed."
     redirect_to products_url
   end
 

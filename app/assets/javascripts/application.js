@@ -11,9 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.ui.autocomplete
 //= require jquery_ujs
 //= require jquery_nested_form
+//= require jquery.ui.autocomplete
 //= require autocomplete-rails
 //= require bootstrap
 //= require_tree .

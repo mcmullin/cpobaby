@@ -14,7 +14,7 @@ end
 
 def make_reps
   rob = Rep.create!(first_name: "Robert", last_name: "McMullin", number: "33089392", 
-                    email: "robert.mcmullin@example.com", password: "password", password_confirmation: "password")
+                    email: "robert.mcmullin@gmail.com", password: "password", password_confirmation: "password")
   4.times do |n|
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -32,5 +32,4 @@ def make_products
 end
 
 def make_orders
-
 end
