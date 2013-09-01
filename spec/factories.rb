@@ -56,17 +56,18 @@ FactoryGirl.define do
 
     factory :order_with_items do # does not work yet - NoMethodError: undefined method `total_items' for nil:NilClass
       ignore do
-        total_items 1
+        items_count 1
       end
 
-      after_create do |order, evaluator|
-        FactoryGirl.create_list(:line_item, evaluator.total_items, order: order)
+      after(:create) do |order, evaluator|
+        FactoryGirl.create_list(:line_item, evaluator.items_count, order: order)
       end
     end
   end
 
   factory :line_item do
     product
+    order
     quantity 1
   end
 
