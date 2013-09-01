@@ -25,13 +25,14 @@
 #
 
 class Rep < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :number, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :number, :number_confirmation, :email, :password, :password_confirmation, :remember_me
 
   has_many :orders
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :number, presence: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
+  validates :number, presence: true, confirmation: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
+  validates :number_confirmation, presence: true
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 8 }
   # validates :password_confirmation, presence: true

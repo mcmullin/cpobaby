@@ -9,7 +9,8 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     number { (66660000 + rand(9999)).to_s }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
+    number_confirmation { "#{number}" }
+    email { Faker::Internet.safe_email }
     password 'password'
     password_confirmation 'password'
   end
@@ -20,8 +21,6 @@ FactoryGirl.define do
     city { Faker::Address.city }
     state { Faker::Address.state_abbr }
     zip { Faker::Address.zip }
-
-    #addressable factory: :order
   end
 
   factory :product do
@@ -41,20 +40,15 @@ FactoryGirl.define do
   end
 
   factory :order do
-    rep
-
     number { (77770000 + rand(9999)).to_s }
     number_confirmation { "#{number}" }
     date { rand(730).days.ago }
 
-    # after_build do |order|
-    #   order.billing_address = FactoryGirl.create(:address, addressable: order)
-    #   order.shipping_address { order.billing_address }
-    # end
+    rep
     billing_address
     shipping_address { billing_address }
 
-    factory :order_with_items do # does not work yet - NoMethodError: undefined method `total_items' for nil:NilClass
+    factory :order_with_items do
       ignore do
         items_count 1
       end
@@ -68,7 +62,7 @@ FactoryGirl.define do
   factory :line_item do
     product
     order
-    quantity 1
-  end
 
+    quantity { rand(12) }
+  end
 end
