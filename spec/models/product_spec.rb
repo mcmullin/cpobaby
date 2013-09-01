@@ -44,7 +44,7 @@ describe Product do
 
   describe "when item number is invalid" do
     it "should be invalid" do
-      item_numbers = %w[100G 200H-1Z 1 10000 1000r]
+      item_numbers = %w[100F 200H-1Z 1 10000 1000r]
       item_numbers.each do |invalid_item_number|
         @product.item_number = invalid_item_number
         @product.should_not be_valid
