@@ -12,36 +12,31 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  discontinued         :boolean          default(FALSE)
+#  state                :string(255)
 #
 
 class Product < ActiveRecord::Base
   attr_accessible :item_number, :description, :category, :current_retail_price, :current_cpo, :current_point_value, :discontinued
 
   has_many :line_items
-  before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :item_number, presence: true, format: { with: /\A\d{2,4}[-12RCWPHTSDBKG]{0,6}\z/ }, uniqueness: true
 
-  state_machine :state, initial: :incomplete do
-    # after_transition any => :pending_confirmation, do: [:notify_moderators]
+  before_destroy :ensure_not_referenced_by_any_line_item
 
-    event :submit do
-      transition :incomplete => :pending # i.e. pending confirmation
+  state_machine :state, initial: :incomplete do
+    # after_transition any => :submitted, do: [:notify_moderators]
+
+    event :submit do # i.e. for moderator review
+      transition any => :submitted # or 'pending (confirmation)'
     end
 
     event :confirm do
-      transition any => :confirmed
+      transition :submitted => :confirmed
     end
 
-    event :revise do
-      transition :confirmed => :pending
-    end
-
-    state :pending do
-      validates :description, presence: true
-    end
-
-    state :confirmed do
+    state :submitted do
+      validates :description,          presence: true
       validates :category,             presence: true
       validates :current_retail_price, presence: true, numericality: true, unless: :discontinued
       validates :current_cpo,          presence: true, numericality: true, unless: :discontinued
@@ -50,6 +45,8 @@ class Product < ActiveRecord::Base
       validates :current_cpo,          absence: true, if: :discontinued
       validates :current_point_value,  absence: true, if: :discontinued
     end
+
+    state :confirmed
   end
 
   def position

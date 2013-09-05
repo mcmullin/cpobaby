@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
 
   has_many :line_items, dependent: :destroy
   has_many :products, through: :line_items
-  accepts_nested_attributes_for :line_items, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :line_items, reject_if: lambda { |a| a[:product_id].blank? }, allow_destroy: true
 
   validates :number, presence: true, confirmation: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
   validates :number_confirmation, presence: true
