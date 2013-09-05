@@ -53,11 +53,11 @@ end
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
+  # gem 'database_cleaner'
   gem 'rb-fsevent', :require => false
   gem 'growl'
   gem 'email_spec'
+  gem 'shoulda-matchers'
 end
 
 # Gems used only for assets and not required

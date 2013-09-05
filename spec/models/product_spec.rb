@@ -12,14 +12,14 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  discontinued         :boolean          default(FALSE)
+#  state                :string(255)
 #
 
 require 'spec_helper'
 
 describe Product do
 
-  before { @product = Product.new(item_number: "1000R", description: "fake knife", category: "none",
-                                  current_retail_price: "100", current_cpo: "90", current_point_value: "75", ) }
+  before { @product = FactoryGirl.build(:product) }
 
   subject { @product }
 
@@ -29,69 +29,112 @@ describe Product do
   it { should respond_to(:current_retail_price) }
   it { should respond_to(:current_cpo) }
   it { should respond_to(:current_point_value) }
+  it { should respond_to(:discontinued) }
+  it { should respond_to(:state) }
+  it { should respond_to(:line_items) }
 
   it { should be_valid }
+  it { should_not be_discontinued }
 
-  describe "when item number is not present" do
-    before { @product.item_number = " " }
-    it { should_not be_valid }
-  end
+  it { should_not allow_mass_assignment_of(:state) }
 
-  describe "when item number is nil" do
-    before { @product.item_number = nil }
-    it { should_not be_valid }
-  end
+  it { should have_many(:line_items) }
 
-  describe "when item number is invalid" do
-    it "should be invalid" do
-      item_numbers = %w[100F 200H-1Z 1 10000 1000r]
-      item_numbers.each do |invalid_item_number|
-        @product.item_number = invalid_item_number
-        @product.should_not be_valid
-      end      
+  describe 'state:' do
+    describe ':incomplete' do
+      it 'initially' do
+        should be_incomplete
+      end
+
+      it { should validate_presence_of(:item_number) }
+      it { should validate_uniqueness_of(:item_number) }
+      describe 'when item number' do
+        describe 'is invalid' do
+          it 'should be invalid' do
+            item_numbers = %w[100F 200H-1Z 1 10000 1000r]
+            item_numbers.each do |invalid_item_number|
+              @product.item_number = invalid_item_number
+              @product.should_not be_valid
+            end
+          end
+        end
+
+        describe 'is valid' do
+          it 'should be valid' do
+            item_numbers = %w[1000WRB 81 777-1 100H-2 5000DBDD-2]
+            item_numbers.each do |valid_item_number|
+              @product.item_number = valid_item_number
+              @product.should be_valid
+            end
+          end
+        end
+      end
+    end
+
+    describe ':submitted' do
+      before { @product.submit }
+      it 'after :submit' do
+        should be_submitted
+      end
+
+      it { should validate_presence_of(:description) }
+      it { should validate_presence_of(:category) }
+
+      describe 'when not discontinued' do
+        it { should validate_presence_of(:current_retail_price) }
+        it { should validate_numericality_of(:current_retail_price) }
+        it { should validate_presence_of(:current_cpo) }
+        it { should validate_numericality_of(:current_cpo) }
+        it { should validate_presence_of(:current_point_value) }
+        it { should validate_numericality_of(:current_point_value) }
+      end
+
+      describe 'when discontinued' do
+        before { @product.discontinued = true }
+
+        describe 'when current_retail_price, _cpo, and _point_value' do
+          describe 'are present' do
+            it { should_not be_valid }
+          end
+
+          describe 'are not present' do
+            before do
+              @product.current_retail_price = ' '
+              @product.current_cpo = ' '
+              @product.current_point_value = ' '
+            end
+            it { should be_valid }
+          end
+        end
+      end
+
+      describe 'but then after :confirm' do
+        before { @product.confirm }
+        it { should_not be_submitted }
+        it { should be_confirmed }
+      end
+    end
+
+    describe ':confirmed' do
+      before do
+        @product.submit
+        @product.confirm
+      end
+      it 'after :confirm' do
+        should be_confirmed
+      end
+
+      describe 'but then after :submit' do
+        before { @product.submit }
+        it { should_not be_confirmed }
+        it { should be_submitted }
+      end
     end
   end
 
-  describe "when item number is valid" do
-    it "should be valid" do
-      item_numbers = %w[1000WRB 81 777-1 100H-2 5000DBDD-2]
-      item_numbers.each do |valid_item_number|
-        @product.item_number = valid_item_number
-        @product.should be_valid
-      end      
-    end
-  end
-
-  describe "when item number is already taken" do
-    before do
-      product_with_same_item = @product.dup
-      product_with_same_item.item_number = @product.item_number.upcase
-      product_with_same_item.save
-    end
-
-    it { should_not be_valid }
-  end
-
-  describe "when description is not present" do
-    before { @product.description = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when description is nil" do
-    before { @product.description = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when category is not present" do
-    before { @product.category = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when category is nil" do
-    before { @product.category = nil }
-    it { should_not be_valid }
-  end
-
-  # current values' presence, numericality
-
+  # test before_destroy callback -- only reason product has_many :line_items
+  # describe 'line_item associations' do
+  #   # destroying product should fail if it has line items
+  #   # and not fail if it doesn't
+  # end
 end
