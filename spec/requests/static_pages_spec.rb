@@ -11,11 +11,39 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading)    { 'CPO, Baby!' }
+    let(:heading)    { '' }
     let(:page_title) { '' }
 
     it_should_behave_like "all static pages"
     it { should_not have_selector 'title', text: '| Home' }
+
+    describe "for signed-in reps" do
+      let(:rep) { FactoryGirl.create(:rep) }
+
+      before do
+        # FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+        # FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+        sign_in_rep rep
+        visit root_path
+      end
+
+      # it "should render the user's feed" do
+      #   user.feed.paginate(page: 1).each do |item|
+      #     page.should have_selector("li##{item.id}", text: item.content)
+      #   end
+      # end
+
+      # describe "follower/following counts" do
+      #   let(:other_user) { FactoryGirl.create(:user) }
+      #   before do
+      #     other_user.follow!(user)
+      #     visit root_path
+      #   end
+
+      #   it { should have_link("Following 0", href: following_user_path(user)) }
+      #   it { should have_link("Follower 1", href: followers_user_path(user)) }
+      # end
+    end
   end
 
   describe "Help page" do
@@ -53,7 +81,7 @@ describe "Static pages" do
     # click_link "Home"
     # click_link "Sign up now!"
     # page.should have_selector 'title', text: full_title('Sign up')
-    click_link "CPO, Baby!"
+    click_link "CPObaby"
     page.should have_selector('title', text: full_title(''))
   end
 end
