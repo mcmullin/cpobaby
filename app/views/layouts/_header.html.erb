@@ -1,15 +1,15 @@
 <header>
-  <div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="navigation">
+  <div class="navbar navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="navbar-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
         <%= link_to "CPObaby", root_path, class: "navbar-brand" %>
       </div>
-      <div class="collapse navbar-collapse bs-navbar-collapse">
+      <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <% if admin_signed_in? %>
             <li class="navbar-text">Signed in as admin <%=current_admin.email %></li>

@@ -1,14 +1,14 @@
-<div class="bs-sidebar">
-  <ul class="nav bs-sidenav">
-      <li><%= link_to "Home", root_path %></li>
-      <li><a href="#">Sales Dashboard</a></li>
-      <li><a href="#">Tasks</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="#">Calls</a></li>
-      <li><a href="#">Appointments</a></li>
-      <li><%= link_to "Orders", orders_path %></li>
-      <li><%= link_to "Products", products_path %></li>
-      <li><a href="#">Search Notes</a></li>
-      <li><a href="#">Archive</a></li>
+<div>
+  <ul class="nav nav-pills nav-stacked bs-sidenav">
+    <li class="<%= 'active' if params[:controller] == 'static_pages' %>"><%= link_to "Home", root_path %></li>
+    <li><a href="#">Sales Dashboard</a></li>
+    <li><a href="#">Tasks</a></li>
+    <li><a href="#">Contacts</a></li>
+    <li><a href="#">Calls</a></li>
+    <li><a href="#">Appointments</a></li>
+    <li class="<%= 'active' if params[:controller] == 'orders' %>"><%= link_to "Orders", orders_path %></li>
+    <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Products", products_path %></li>
+    <li><a href="#">Search Notes</a></li>
+    <li><a href="#">Archive</a></li>
   </ul>
 </div>

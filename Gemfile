@@ -6,9 +6,10 @@ gem 'pg'
 gem 'thin'
 gem 'foreman'
 
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+# gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+# gem 'jquery-ui-sass-rails'
 gem 'rails3-jquery-autocomplete'
 
 gem 'devise'
@@ -66,4 +67,5 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  # gem 'bootswatch-rails'
 end
