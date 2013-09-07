@@ -5,8 +5,8 @@
       <div class="row">
         <div class="col-lg-6">
           <%= f.input :item_number %>
-          <%= f.input :description %>
-          <%= f.input :category, placeholder: 'select by typing to autocomplete' %>
+          <%= f.input :description, required: true %>
+          <%= f.input :category, required: true, placeholder: 'select by typing to autocomplete' %>
         </div>
         <div class="col-lg-6">
           <div class="control-group string optional product_current_retail_price form-group">
@@ -18,14 +18,14 @@
             </div>
             <%= f.error :current_retail_price %>
           </div>
-          <%= f.input :current_cpo,
+          <%= f.input :current_cpo, label: 'Current CPO',
                       input_html: { value: (number_with_precision(f.object.current_cpo, 
                                     strip_insignificant_zeros: true) || '') } %>
           <%= f.input :current_point_value,
                       input_html: { value: (number_with_precision(f.object.current_point_value,
                                     strip_insignificant_zeros: true) || '') } %>
           <%= f.input :discontinued, label: false, inline_label: true,
-                                     hint: 'All fields are required unless this is checked.' %>
+                                     hint: 'Unless this is checked, retail, cpo, and point fields are required.' %>
         </div>
       </div>
     </div>

@@ -2,8 +2,8 @@
 <tr>
   <% if product.state == 'confirmed' %>
     <td><span class='label label-success'>CONFIRMED</span></td>
-  <% elsif product.state == 'pending' %>
-    <td><span class='label label-warning'>PENDING...</span></td>
+  <% elsif product.state == 'submitted' %>
+    <td><span class='label label-warning'>SUBMITTED</span></td>
   <% elsif product.state == 'incomplete' %>
     <td><span class='label label-danger'>INCOMPLETE</span></td>
   <% else %>

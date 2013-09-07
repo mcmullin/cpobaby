@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def import
     Product.import(params[:import_products][:file_input])
-    flash[:success] = "Products imported."
+    flash[:success] = 'Products imported.'
     redirect_to products_url
   end
 
@@ -27,8 +27,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     if @product.save
-      flash[:success] = "Product #{@product.item_number} added"
-      redirect_to products_url
+      if @product.submit
+        flash[:success] = "Product ##{@product.item_number} added."
+        redirect_to products_url
+      else
+        flash[:warning] = "Product ##{@product.item_number} added, but record is incomplete."
+        redirect_to edit_product_url(@product)
+      end
     else
       render 'new'
     end
@@ -40,8 +45,8 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if @product.update_attributes(params[:product])
-      flash[:success] = "Product #{@product.item_number} updated"
+    if @product.update_attributes(params[:product]) && @product.submit
+      flash[:success] = "Product ##{@product.item_number} updated and submitted for review."
       redirect_to products_url
     else
       render 'edit'
@@ -52,7 +57,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     product_item_number = "#{@product.item_number}"
     @product.destroy 
-    flash[:success] = "Product #{product_item_number} removed."
+    flash[:success] = "Product ##{product_item_number} removed."
     redirect_to products_url
   end
 

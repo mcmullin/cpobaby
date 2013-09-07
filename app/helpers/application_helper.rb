@@ -13,12 +13,16 @@ module ApplicationHelper
   # Returns the flash class
   def flash_class(type)
     case type
-    when :alert
-      "alert-error"
+    when :success
+      'alert-success'
     when :notice
-      "alert-success"
+      'alert-info'
+    when :warning
+      'alert-warning'
+    when :error
+      'alert-danger'
     else
-      ""
+      ''
     end
   end
 end
