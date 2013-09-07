@@ -7230,7 +7230,7 @@ td.visible-print {
   }
 }
 
-.navbar {
+/*.navbar {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(50%, #eeeeee), to(#e4e4e4));
   background-image: -webkit-linear-gradient(#ffffff, #eeeeee 50%, #e4e4e4);
@@ -7358,7 +7358,7 @@ h6 {
 .pagination .active > a,
 .pagination .active > a:hover {
   border-color: #ddd;
-}
+}*/
 
 .clearfix:before,
 .clearfix:after {

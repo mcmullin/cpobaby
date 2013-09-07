@@ -1,14 +1,14 @@
 <% provide(:title, "Products") %> 
 
 <div class="page-header">
-  <h2>Products <%= link_to 'New Product', new_product_path, class: 'btn btn-default pull-right' if can? :manage, @product %></h2>
+  <h2>Products <%= link_to 'New Product', new_product_path, class: 'btn btn-primary pull-right' if can? :manage, @product %></h2>
 </div>
 
 <% if can? :manage, @product %>
   <div class='col-lg-4 well pull-right'>
     <%= simple_form_for :import_products, { url: import_products_path } do |f| %>
       <%= f.input :file_input, as: :file, required: false, hint: 'Select a .csv file', class: 'form-group' %>
-      <%= f.button :submit, "Import Products", class: 'btn btn-default' %>
+      <%= f.button :submit, "Import Products", class: 'btn btn-primary' %>
     <% end %>
   </div>
   <p class='col-lg-4 well pull-left'>Export list of products as a <%= link_to ".csv", products_path(format: "csv") %> file</p>
