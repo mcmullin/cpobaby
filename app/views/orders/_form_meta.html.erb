@@ -8,8 +8,7 @@
                                       input_html: { value: (f.object.number_confirmation || f.object.number || '') } %>
   </div>
   <div class="col-lg-4">
-    <%= f.input :date, label: 'Order Date', 
-                       as: :date, start_year: 1949, end_year: Date.today.year + 1, order: [:day, :month, :year] %>
+    <%= f.input :date, label: 'Order Date', as: :string, hint: "mm-dd-yyyy" %>
   </div>
   <div class="col-lg-2">
     <p><strong>Office #</strong></p>
