@@ -32,12 +32,12 @@
   <tr>
     <td>name</td>
     <td>name</td>
-    <td><%= @order.date %></td>
+    <td><%= @order.date.to_formatted_s :long_ordinal %></td>
   </tr>
   <tr>
     <th>Billing Address</th>
     <th>Delivery Address</th>
-    <th>Entered (ROLO)</th>
+    <th>Entered</th>
   </tr>
   <tr>
     <td>
