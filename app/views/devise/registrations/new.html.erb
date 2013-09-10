@@ -13,8 +13,8 @@
           <%= f.input :number, autofocus: true, label: 'Rep number', 
                                hint: 'Careful! You will not be able to change this.' %>
           <%= f.input :number_confirmation %>
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
+          <%= f.input :first_name, required: false %>
+          <%= f.input :last_name, required: false %>
           <%= f.input :email %>
           <%= f.input :password %>
           <%= f.input :password_confirmation, hint: 'All fields are required.' %>
