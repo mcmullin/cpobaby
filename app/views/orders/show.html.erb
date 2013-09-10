@@ -41,15 +41,15 @@
   </tr>
   <tr>
     <td>
-      <%= @order.billing_address.line1 %>
-      <%= @order.billing_address.line2 %><br>
+      <%= @order.billing_address.street %>
+      <%= @order.billing_address.secondary %><br>
       <%= @order.billing_address.city %>
       <%= @order.billing_address.state %>
       <%= @order.billing_address.zip %>
     </td>
     <td>
-      <%= @order.shipping_address.line1 %>
-      <%= @order.shipping_address.line2 %><br>
+      <%= @order.shipping_address.street %>
+      <%= @order.shipping_address.secondary %><br>
       <%= @order.shipping_address.city %>
       <%= @order.shipping_address.state %>
       <%= @order.shipping_address.zip %>
