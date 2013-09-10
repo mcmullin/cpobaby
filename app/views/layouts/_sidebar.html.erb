@@ -1,14 +1,12 @@
-<div>
-  <ul class="nav nav-pills nav-stacked bs-sidenav">
-    <li class="<%= 'active' if params[:controller] == 'static_pages' %>"><%= link_to "Home", root_path %></li>
-    <li><a href="#">Sales Dashboard</a></li>
-    <li><a href="#">Tasks</a></li>
-    <li><a href="#">Contacts</a></li>
-    <li><a href="#">Calls</a></li>
-    <li><a href="#">Appointments</a></li>
-    <li class="<%= 'active' if params[:controller] == 'orders' %>"><%= link_to "Orders", orders_path %></li>
-    <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to "Products", products_path %></li>
-    <li><a href="#">Search Notes</a></li>
-    <li><a href="#">Archive</a></li>
-  </ul>
+<div class='sidebar list-group'>
+  <%= link_to 'Home', root_path, class: 'list-group-item' + (params[:controller] == 'static_pages' ? ' active' : '') %>
+  <%= link_to 'Sales Dashboard', '#', class: 'list-group-item' %>
+  <%= link_to 'Tasks', '#', class: 'list-group-item' %>
+  <%= link_to 'Contacts', '#', class: 'list-group-item' %>
+  <%= link_to 'Calls', '#', class: 'list-group-item' %>
+  <%= link_to 'Appointments', '#', class: 'list-group-item' %>
+  <%= link_to 'Orders', orders_path, class: 'list-group-item' + (params[:controller] == 'orders' ? ' active' : '') %>
+  <%= link_to 'Products', products_path, class: 'list-group-item' + (params[:controller] == 'products' ? ' active' : '') %>
+  <%= link_to 'Search Notes', '#', class: 'list-group-item' %>
+  <%= link_to 'Archive', '#', class: 'list-group-item' %>
 </div>

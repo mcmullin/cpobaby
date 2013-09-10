@@ -49,6 +49,18 @@ a { color: #446E9B; }
   background-color: #385a7f;
 }
 
+.sidebar {
+  margin: 30px 0;
+  // border-radius: 5px;
+  a.active {
+    // background-color: #385a7f;
+    &:hover, &:focus {
+      // background-color: #446e9b;
+      background-color: #385a7f;
+    }
+  }
+}
+
 .hint {
   display: block;
   margin-top: 5px;
