@@ -123,7 +123,7 @@ describe 'Product pages' do
           before { click_button submit }
 
           it { should have_selector('title', text: full_title('New Product')) }
-          it { should have_selector('div.alert.alert-error', text: 'Please review the problems below:') }
+          it { should have_selector('div.alert.alert-danger') }
         end
       end
 
@@ -140,7 +140,7 @@ describe 'Product pages' do
           let(:product) { Product.find_by_item_number(item_number) }
 
           it { should have_selector('title', text: full_title("Editing Product ##{product.item_number}")) }
-          it { should have_selector('div.alert.alert-warning', text: "Product ##{product.item_number} added, but record is incomplete.") }
+          it { should have_selector('div.alert.alert-warning') }
 
           specify { product.reload.state.should == 'incomplete' }
         end
@@ -170,7 +170,7 @@ describe 'Product pages' do
         end
 
         it { should have_selector('title', text: full_title("Editing Product ##{product.item_number}")) }
-        it { should have_selector('div.alert.alert-error', text: 'Please review the problems below:') }
+        it { should have_selector('div.alert.alert-danger') }
       end
 
       describe 'with valid information after submission' do
@@ -181,7 +181,7 @@ describe 'Product pages' do
         end
 
         it { should have_selector('title', text: full_title('Products')) }
-        it { should have_selector('div.alert.alert-success', text: "Product ##{product.item_number} updated and submitted for review.") }
+        it { should have_selector('div.alert.alert-success') }
 
         specify { product.reload.description.should  == new_description}
         specify { product.reload.state.should == 'submitted' }

@@ -46,7 +46,6 @@ describe Product do
         should be_incomplete
       end
 
-      it { should validate_presence_of(:item_number) }
       it { should validate_uniqueness_of(:item_number) }
       describe 'when item number' do
         describe 'is invalid' do
@@ -81,11 +80,8 @@ describe Product do
       it { should validate_presence_of(:category) }
 
       describe 'when not discontinued' do
-        it { should validate_presence_of(:current_retail_price) }
         it { should validate_numericality_of(:current_retail_price) }
-        it { should validate_presence_of(:current_cpo) }
         it { should validate_numericality_of(:current_cpo) }
-        it { should validate_presence_of(:current_point_value) }
         it { should validate_numericality_of(:current_point_value) }
       end
 
