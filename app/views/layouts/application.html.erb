@@ -30,7 +30,13 @@
             </div>
           </div>
         <% else %>
-          <%= yield %>
+          <div class="col-lg-10 col-lg-offset-1">
+            <div class="row">
+              <div class="col-lg-12">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
       <%= render 'layouts/footer' %>

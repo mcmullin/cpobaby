@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class='page-header'>
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 </div>
 
@@ -6,7 +6,7 @@
                               html: { method: :put, class: 'well' } ) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <fieldset>
-    <div class="form-inputs">
+    <div class='form-inputs'>
       <div class='row'>
         <div class='col-lg-4'>
           <%= f.input :number, label: 'Rep number', disabled: true, hint: 'You cannot change your rep number.' %>
@@ -23,21 +23,25 @@
           <%= f.input :password, label: 'New password', autocomplete: 'off' %>
           <%= f.input :password_confirmation, label: 'New password confirmation' %>
           <%= f.input :current_password, required: true,
-                      hint: "we always need your current password to confirm any updates" %>
+                      hint: 'We always need your current password to confirm any updates.' %>
         </div>
       </div>
     </div>
-    <div class="form-actions">
-      <%= f.button :submit, "Update", class: 'btn btn-primary' %>
+    <div class='form-actions'>
+      <%= f.button :submit, 'Update', class: 'btn btn-primary' %>
       <%= link_to 'Cancel', root_path, class: 'btn btn-default' %>
     </div>
   </fieldset>
 <% end %>
 
-<h3>Cancel my account</h3>
-<p>
-  Unhappy? 
-  <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
-</p>
+<div class='panel panel-danger'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>Cancel my account</h3>
+  </div>
+  <div class='panel-body'>
+    Unhappy?
+    <%= link_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete %>
+  </div>
+</div>
 
-<%= link_to "Back", :back %>
+<%= link_to 'Back', :back %>
