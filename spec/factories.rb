@@ -16,8 +16,8 @@ FactoryGirl.define do
   end
 
   factory :address, aliases: [:billing_address, :shipping_address] do
-    line1 { Faker::Address.street_address }
-    line2 ''
+    street { Faker::Address.street_address }
+    secondary ''
     city { Faker::Address.city }
     state { Faker::Address.state_abbr }
     zip { Faker::Address.zip }

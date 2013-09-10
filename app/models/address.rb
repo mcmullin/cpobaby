@@ -3,8 +3,8 @@
 # Table name: addresses
 #
 #  id               :integer          not null, primary key
-#  line1            :string(255)
-#  line2            :string(255)
+#  street           :string(255)
+#  secondary        :string(255)
 #  city             :string(255)
 #  state            :string(255)
 #  zip              :string(255)
