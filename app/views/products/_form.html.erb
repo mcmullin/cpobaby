@@ -5,8 +5,9 @@
       <div class="row">
         <div class="col-lg-6">
           <%= f.input :item_number, required: true %>
-          <%= f.input :description, required: true unless f.object.incomplete? %>
-          <%= f.input :category, placeholder: 'select by typing to autocomplete', required: true unless f.object.incomplete? %>
+          <%= f.input :description, required: !f.object.incomplete? %>
+          <%= f.input :category, required: !f.object.incomplete?,
+                                 placeholder: 'select by typing to autocomplete' %>
         </div>
         <div class="col-lg-6">
           <%= f.input :current_retail_price, wrapper: :prepend do %>
