@@ -50,9 +50,9 @@ describe 'Product pages' do
           if product.discontinued
             page.should have_selector('td', text: 'PRODUCT DISCONTINUED')
           else
-            page.should have_selector('td', text: number_to_currency(product.current_retail_price))
-            page.should have_selector('td', text: number_with_precision(product.current_cpo, strip_insignificant_zeros: true))
-            page.should have_selector('td', text: number_with_precision(product.current_point_value, strip_insignificant_zeros: true))
+            page.should have_selector('td', text: number_to_currency(product.retail))
+            page.should have_selector('td', text: number_with_precision(product.cpo, strip_insignificant_zeros: true))
+            page.should have_selector('td', text: number_with_precision(product.points, strip_insignificant_zeros: true))
           end
         end
       end

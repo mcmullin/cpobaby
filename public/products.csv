@@ -1,4 +1,4 @@
-id,item_number,description,category,current_retail_price,current_cpo,current_point_value,created_at,updated_at,discontinued
+id,item_number,description,category,retail,cpo,points,created_at,updated_at,discontinued
 1399,1020RC,Classic Modified 1720 Paring Knife,Auxilary,52.0,48.0,35.0,2013-08-27 22:35:29 UTC,2013-08-27 22:35:29 UTC,false
 1400,1021RC,Classic Modified 1721 Trimmer,Auxilary,57.0,53.0,40.0,2013-08-27 22:35:29 UTC,2013-08-27 22:35:29 UTC,false
 1401,1160C,Classic Potato Masher,Kitchen Tool Sets & Accessories,51.0,47.0,35.0,2013-08-27 22:35:29 UTC,2013-08-27 22:35:29 UTC,false

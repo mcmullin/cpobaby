@@ -15,9 +15,9 @@
   <% if product.discontinued %>
     <td colspan="3" align='center'><span class='label label-default'>PRODUCT DISCONTINUED</span></td>
   <% else %>
-    <td align='right'><%= number_to_currency(product.current_retail_price) %></td>
-    <td align='right'><%= number_with_precision(product.current_cpo, strip_insignificant_zeros: true) %></td>
-    <td align='right'><%= number_with_precision(product.current_point_value, strip_insignificant_zeros: true) %></td>
+    <td align='right'><%= number_to_currency(product.retail) %></td>
+    <td align='right'><%= number_with_precision(product.cpo, strip_insignificant_zeros: true) %></td>
+    <td align='right'><%= number_with_precision(product.points, strip_insignificant_zeros: true) %></td>
   <% end %>
   <% if can? :manage, @product %>
     <% unless controller.action_name == 'show' %>

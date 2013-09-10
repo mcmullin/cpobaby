@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910041250) do
+ActiveRecord::Schema.define(:version => 20130910042119) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(:version => 20130910041250) do
     t.string   "item_number"
     t.string   "description"
     t.string   "category"
-    t.decimal  "current_retail_price"
-    t.decimal  "current_cpo"
-    t.decimal  "current_point_value"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-    t.boolean  "discontinued",         :default => false
+    t.decimal  "retail"
+    t.decimal  "cpo"
+    t.decimal  "points"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "discontinued", :default => false
     t.string   "state"
   end
 

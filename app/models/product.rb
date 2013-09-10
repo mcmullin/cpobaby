@@ -2,21 +2,21 @@
 #
 # Table name: products
 #
-#  id                   :integer          not null, primary key
-#  item_number          :string(255)
-#  description          :string(255)
-#  category             :string(255)
-#  current_retail_price :decimal(, )
-#  current_cpo          :decimal(, )
-#  current_point_value  :decimal(, )
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  discontinued         :boolean          default(FALSE)
-#  state                :string(255)
+#  id           :integer          not null, primary key
+#  item_number  :string(255)
+#  description  :string(255)
+#  category     :string(255)
+#  retail       :decimal(, )
+#  cpo          :decimal(, )
+#  points       :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  discontinued :boolean          default(FALSE)
+#  state        :string(255)
 #
 
 class Product < ActiveRecord::Base
-  attr_accessible :item_number, :description, :category, :current_retail_price, :current_cpo, :current_point_value, :discontinued
+  attr_accessible :item_number, :description, :category, :retail, :cpo, :points, :discontinued
 
   has_many :line_items
 
@@ -36,14 +36,14 @@ class Product < ActiveRecord::Base
     end
 
     state :submitted do
-      validates :description,          presence: true
-      validates :category,             presence: true
-      validates :current_retail_price, numericality: true, unless: :discontinued
-      validates :current_cpo,          numericality: true, unless: :discontinued
-      validates :current_point_value,  numericality: true, unless: :discontinued
-      validates :current_retail_price, absence: true, if: :discontinued
-      validates :current_cpo,          absence: true, if: :discontinued
-      validates :current_point_value,  absence: true, if: :discontinued
+      validates :description, presence: true
+      validates :category,    presence: true
+      validates :retail,      numericality: true, unless: :discontinued
+      validates :cpo,         numericality: true, unless: :discontinued
+      validates :points,      numericality: true, unless: :discontinued
+      validates :retail,      absence: true, if: :discontinued
+      validates :cpo,         absence: true, if: :discontinued
+      validates :points,      absence: true, if: :discontinued
     end
 
     state :confirmed

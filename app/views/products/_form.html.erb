@@ -10,17 +10,17 @@
                                  placeholder: 'select by typing to autocomplete' %>
         </div>
         <div class="col-lg-6">
-          <%= f.input :current_retail_price, wrapper: :prepend do %>
+          <%= f.input :retail, label: 'Current retail price', wrapper: :prepend do %>
             <%= content_tag :span, '$', class: 'input-group-addon' %>
-            <%= f.input_field :current_retail_price,
-                              value: (number_with_precision(f.object.current_retail_price, precision: 2) || '') %>
+            <%= f.input_field :retail, value: (number_with_precision(f.object.retail,
+                                               precision: 2) || '') %>
           <% end %>
-          <%= f.input :current_cpo, label: 'Current CPO',
-                      input_html: { value: (number_with_precision(f.object.current_cpo, 
-                                    strip_insignificant_zeros: true) || '') } %>
-          <%= f.input :current_point_value,
-                      input_html: { value: (number_with_precision(f.object.current_point_value,
-                                    strip_insignificant_zeros: true) || '') } %>
+          <%= f.input :cpo, label: 'Current CPO amount',
+                      input_html: { value: (number_with_precision(f.object.cpo, 
+                                            strip_insignificant_zeros: true) || '') } %>
+          <%= f.input :points, label: 'Current point value',
+                      input_html: { value: (number_with_precision(f.object.points,
+                                            strip_insignificant_zeros: true) || '') } %>
           <%= f.input :discontinued, label: false, inline_label: true,
                                      hint: 'Unless this is checked, retail, cpo, and point fields are required.' %>
         </div>

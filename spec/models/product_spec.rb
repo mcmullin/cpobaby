@@ -2,17 +2,17 @@
 #
 # Table name: products
 #
-#  id                   :integer          not null, primary key
-#  item_number          :string(255)
-#  description          :string(255)
-#  category             :string(255)
-#  current_retail_price :decimal(, )
-#  current_cpo          :decimal(, )
-#  current_point_value  :decimal(, )
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  discontinued         :boolean          default(FALSE)
-#  state                :string(255)
+#  id           :integer          not null, primary key
+#  item_number  :string(255)
+#  description  :string(255)
+#  category     :string(255)
+#  retail       :decimal(, )
+#  cpo          :decimal(, )
+#  points       :decimal(, )
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  discontinued :boolean          default(FALSE)
+#  state        :string(255)
 #
 
 require 'spec_helper'
@@ -26,9 +26,9 @@ describe Product do
   it { should respond_to(:item_number) }
   it { should respond_to(:description) }
   it { should respond_to(:category) }
-  it { should respond_to(:current_retail_price) }
-  it { should respond_to(:current_cpo) }
-  it { should respond_to(:current_point_value) }
+  it { should respond_to(:retail) }
+  it { should respond_to(:cpo) }
+  it { should respond_to(:points) }
   it { should respond_to(:discontinued) }
   it { should respond_to(:state) }
   it { should respond_to(:line_items) }
@@ -80,24 +80,24 @@ describe Product do
       it { should validate_presence_of(:category) }
 
       describe 'when not discontinued' do
-        it { should validate_numericality_of(:current_retail_price) }
-        it { should validate_numericality_of(:current_cpo) }
-        it { should validate_numericality_of(:current_point_value) }
+        it { should validate_numericality_of(:retail) }
+        it { should validate_numericality_of(:cpo) }
+        it { should validate_numericality_of(:points) }
       end
 
       describe 'when discontinued' do
         before { @product.discontinued = true }
 
-        describe 'when current_retail_price, _cpo, and _point_value' do
+        describe 'when retail, cpo, and points' do
           describe 'are present' do
             it { should_not be_valid }
           end
 
           describe 'are not present' do
             before do
-              @product.current_retail_price = ' '
-              @product.current_cpo = ' '
-              @product.current_point_value = ' '
+              @product.retail = ' '
+              @product.cpo = ' '
+              @product.points = ' '
             end
             it { should be_valid }
           end

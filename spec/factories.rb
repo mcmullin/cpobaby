@@ -27,15 +27,15 @@ FactoryGirl.define do
     sequence(:item_number) { |n| (100 + n).to_s + 'GG' }
     sequence(:description) { |n| "Fake Product ##{n}" }
     category 'Fake Products'
-    current_retail_price { rand(50) * 55 }
-    current_cpo { current_retail_price * 50 / 55 }
-    current_point_value { current_retail_price * 35 / 55 }
+    retail { rand(50) * 55 }
+    cpo { retail * 50 / 55 }
+    points { retail * 35 / 55 }
 
     factory :discontinued_product do
       discontinued true
-      current_retail_price ''
-      current_cpo ''
-      current_point_value ''
+      retail ''
+      cpo ''
+      points ''
     end
   end
 
