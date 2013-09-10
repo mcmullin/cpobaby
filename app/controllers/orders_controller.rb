@@ -35,6 +35,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.build_billing_address
     @order.build_shipping_address
+    @order.build_billing_phone
+    @order.build_shipping_phone
     4.times { @order.line_items.build(params[:order_id]) }
 
     respond_to do |format|

@@ -12,13 +12,18 @@
 
 class Order < ActiveRecord::Base
   attr_accessible :number, :number_confirmation, :date, :rep_number,
-                  :billing_address_attributes, :shipping_address_attributes, :line_items_attributes
+                  :billing_address_attributes, :shipping_address_attributes,
+                  :billing_phone_attributes, :shipping_phone_attributes, :line_items_attributes
 
   belongs_to :rep
 
   has_one :billing_address, class_name: 'Address', as: :addressable
   has_one :shipping_address, class_name: 'Address', as: :addressable
   accepts_nested_attributes_for :billing_address, :shipping_address
+
+  has_one :billing_phone, class_name: 'Phone', as: :phoneable
+  has_one :shipping_phone, class_name: 'Phone', as: :phoneable
+  accepts_nested_attributes_for :billing_phone, :shipping_phone
 
   has_many :line_items, dependent: :destroy
   has_many :products, through: :line_items
@@ -28,8 +33,7 @@ class Order < ActiveRecord::Base
   validates :number_confirmation, presence: true, if: :new_record?
   validates :date, date: { after: Proc.new { Date.new(1949) }, message: 'is invalid' }
   validates :rep_number, format: { with: /\A\d{8}\z/ }
-  validates :billing_address, presence: true
-  validates :shipping_address, presence: true
+  validates :billing_address, :shipping_address, :billing_phone, :shipping_phone, presence: true
 
   def rep_number
     rep.try(:number)

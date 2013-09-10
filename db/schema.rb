@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910042119) do
+ActiveRecord::Schema.define(:version => 20130910205618) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20130910042119) do
     t.boolean  "free",       :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.decimal  "price"
+    t.decimal  "subtotal"
   end
 
   add_index "line_items", ["order_id"], :name => "index_line_items_on_order_id"
@@ -67,6 +69,19 @@ ActiveRecord::Schema.define(:version => 20130910042119) do
 
   add_index "orders", ["number"], :name => "index_orders_on_number", :unique => true
   add_index "orders", ["rep_id", "date"], :name => "index_orders_on_rep_id_and_date"
+
+  create_table "phones", :force => true do |t|
+    t.string   "number",         :limit => 12
+    t.string   "extension",      :limit => 6
+    t.string   "country",        :limit => 6,  :default => "1", :null => false
+    t.string   "description"
+    t.integer  "phoneable_id"
+    t.string   "phoneable_type"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "phones", ["phoneable_type", "phoneable_id"], :name => "index_phones_on_phoneable_type_and_phoneable_id"
 
   create_table "products", :force => true do |t|
     t.string   "item_number"

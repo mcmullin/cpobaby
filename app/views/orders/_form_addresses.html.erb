@@ -7,7 +7,9 @@
       <%= render partial: 'shared/address_fields', locals: {f: address} %>
     <% end %>
     <p><strong>Phone</strong></p>
-    <p>phone</p>
+    <%= f.simple_fields_for :billing_phone do |phone| %>
+      <%= render partial: 'shared/basic_phone_fields', locals: {f: phone} %>
+    <% end %>
     <p><strong>Email</strong></p>
     <p>email</p>
   </div>
@@ -20,7 +22,9 @@
       <%= render partial: 'shared/address_fields', locals: {f: address} %>
     <% end %>
     <p><strong>Delivery Phone</strong></p>
-    <p>phone</p>
+    <%= f.simple_fields_for :shipping_phone do |phone| %>
+      <%= render partial: 'shared/basic_phone_fields', locals: {f: phone} %>
+    <% end %>
     <p>Delivery name / address / phone is the same as billing?</p>
     <p>(checkbox)</p>
   </div>

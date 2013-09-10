@@ -1,0 +1,9 @@
+<div class="row phone">
+  <div class="col-lg-6 phone-number">
+    <%= f.input :number, required: true, hint: '"555-555-5555"',
+                         input_html: { value: (number_to_phone(f.object.number) || '') } %>
+  </div>
+  <div class="col-lg-6 address-description">
+    <%= f.input :description, placeholder: '', hint: 'optional, e.g. "home", "cell"' %>
+  </div>
+</div>

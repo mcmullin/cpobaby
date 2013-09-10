@@ -1,0 +1,17 @@
+<div class="row phone">
+  <div class="col-lg-4 phone-number">
+    <%= f.input :number, required: true, hint: 'e.g. "555-555-5555"',
+                         input_html: { value: (number_to_phone(f.object.number) || '') } %>
+  </div>
+  
+  <div class="col-lg-3 phone-extension">
+    <%= f.input :extension, hint: 'x 5555' %>
+  </div>
+  <div class="col-lg-2 phone-country">
+    <%= f.input :country, as: :string, required: false, hint: '(USA)',
+                          input_html: { value: ('+' + f.object.country) } %>
+  </div>
+  <div class="col-lg-3 address-description">
+    <%= f.input :description, placeholder: '', hint: 'e.g. "Home"' %>
+  </div>
+</div>
