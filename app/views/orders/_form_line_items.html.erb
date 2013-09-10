@@ -1,33 +1,51 @@
 <div class="row order-line-items">
   <div class="col-lg-12">
     <div class="row line-item-headers">
-      <div class="col-lg-1">
+      <div class="col-lg-2">
         <p><strong>Quantity</strong></p>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-4">
         <p><strong>Item # with color and Description</strong></p>
       </div>
       <div class="col-lg-1">
         <p><strong>Free?</strong></p>
       </div>
+      <div class="col-lg-2">
+        <p><strong>Price</strong></p>
+      </div>
+      <div class="col-lg-2">
+        <p><strong>Subtotal</strong></p>
+      </div>
       <div class="col-lg-1"></div>
     </div>
-    <%= f.simple_fields_for(:line_items, defaults: { label: false }) do |li_form| %>
+    <%= f.simple_fields_for(:line_items, defaults: { label: false }) do |li_f| %>
       <div class="row line-item">
-        <div class="col-lg-1">
-          <p><%= li_form.input :quantity %></p>
+        <div class="col-lg-2">
+          <%= li_f.input :quantity %>
         </div>
-        <div class="col-lg-9">
-          <p>
-            <%= li_form.association :product, label_method: :item_and_description, 
-                                              collection: Product.all.sort_by(&:position) %>
-          </p>
+        <div class="col-lg-4">
+          <%= li_f.association :product, label_method: :item_and_description,
+                                         collection: Product.all.sort_by(&:position) %>
         </div>
         <div class="col-lg-1">
-          <p><%= li_form.input :free %></p>
+          <%= li_f.input :free %>
+        </div>
+        <div class="col-lg-2">
+          <%= li_f.input :price, label: false, wrapper: :prepend do %>
+            <%= content_tag :span, '$', class: 'input-group-addon' %>
+            <%= li_f.input_field :price, value: (number_with_precision(li_f.object.price,
+                                                 precision: 2) || '') %>
+          <% end %>
+        </div>
+        <div class="col-lg-2">
+          <%= li_f.input :subtotal, label: false, wrapper: :prepend do %>
+            <%= content_tag :span, '$', class: 'input-group-addon' %>
+            <%= li_f.input_field :subtotal, value: (number_with_precision(li_f.object.subtotal,
+                                                    precision: 2) || '') %>
+          <% end %>
         </div>
         <div class="col-lg-1">
-          <%= li_form.link_to_remove "Remove product" %>
+          <%= li_f.link_to_remove "Remove product" %>
         </div>
       </div>
     <% end %>

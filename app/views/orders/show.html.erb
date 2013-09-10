@@ -83,14 +83,18 @@
     <th>Quantity</th>
     <th>Item Number</th>
     <th>Description</th>
-    <th>X</th>
+    <th>Free?</th>
+    <th>Price</th>
+    <th>Subtotal</th>
   </tr>
   <% for line_item in @order.line_items %>
     <tr>
       <td><%= line_item.quantity %></td>
       <td><%= line_item.product.item_number %></td>
       <td><%= line_item.product.description %></td>
-      <td><%= "FREE" if line_item.free %></td>
+      <td><%= 'Free' if line_item.free %></td>
+      <td><%= number_to_currency(line_item.price) %></td>
+      <td><%= number_to_currency(line_item.subtotal) %></td>
     </tr>
   <% end %>
 </table>

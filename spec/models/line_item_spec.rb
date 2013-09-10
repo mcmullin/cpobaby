@@ -9,6 +9,8 @@
 #  free       :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  price      :decimal(, )
+#  subtotal   :decimal(, )
 #
 
 require 'spec_helper'
