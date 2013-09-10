@@ -13,7 +13,7 @@ def make_admin
 end
 
 def make_reps
-  rob = Rep.create!(first_name: "Robert", last_name: "McMullin", number: "33089392", 
+  rob = Rep.create!(first_name: "Robert", last_name: "McMullin", number: "33089392", number_confirmation: "33089392",
                     email: "robert.mcmullin@gmail.com", password: "password", password_confirmation: "password")
   4.times do |n|
     first_name = Faker::Name.first_name
@@ -21,7 +21,7 @@ def make_reps
     number = "9999000#{n+1}"
     email = "example-#{n+1}@example.com"
     password  = "password"
-    rep = Rep.create!(first_name: first_name, last_name: last_name, number: number, 
+    rep = Rep.create!(first_name: first_name, last_name: last_name, number: number, number_confirmation: number,
                       email: email, password: password, password_confirmation: password)
     #rep.toggle!(:activated)
   end
