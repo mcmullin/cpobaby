@@ -1,23 +1,19 @@
-<%= simple_form_for(@product, html: { class: 'well' }, defaults: { wrapper_html: { class: 'form-group' } } ) do |f| %>
+<%= simple_form_for(@product, html: { class: 'well' } ) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <fieldset>
     <div class="form-inputs">
       <div class="row">
         <div class="col-lg-6">
-          <%= f.input :item_number %>
-          <%= f.input :description, required: true %>
-          <%= f.input :category, required: true, placeholder: 'select by typing to autocomplete' %>
+          <%= f.input :item_number, required: true %>
+          <%= f.input :description, required: true unless f.object.incomplete? %>
+          <%= f.input :category, placeholder: 'select by typing to autocomplete', required: true unless f.object.incomplete? %>
         </div>
         <div class="col-lg-6">
-          <div class="control-group string optional product_current_retail_price form-group">
-            <%= f.label :current_retail_price %>
-            <div class='controls input-group'>
-              <span class="input-group-addon">$</span>
-              <%= f.input_field :current_retail_price,
-                                value: (number_with_precision(f.object.current_retail_price, precision: 2) || '') %>
-            </div>
-            <%= f.error :current_retail_price %>
-          </div>
+          <%= f.input :current_retail_price, wrapper: :prepend do %>
+            <%= content_tag :span, '$', class: 'input-group-addon' %>
+            <%= f.input_field :current_retail_price,
+                              value: (number_with_precision(f.object.current_retail_price, precision: 2) || '') %>
+          <% end %>
           <%= f.input :current_cpo, label: 'Current CPO',
                       input_html: { value: (number_with_precision(f.object.current_cpo, 
                                     strip_insignificant_zeros: true) || '') } %>
