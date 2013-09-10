@@ -31,11 +31,11 @@ class Rep < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :number, presence: true, confirmation: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
-  validates :number_confirmation, presence: true
-  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-  validates :password, length: { minimum: 8 } # 'presence: true' is somehow unneccesary here
-  validates :password_confirmation, presence: true # this line appears to do nothing
+  validates :number, uniqueness: true, format: { with: /\A\d{8}\z/ }, confirmation: true, if: :new_record?
+  validates :number_confirmation, presence: true, if: :new_record?
+  validates :email, uniqueness: { case_sensitive: false }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :password, length: { minimum: 8 }, if: :new_record?
+  validates :password_confirmation, presence: true, if: :new_record?
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable and :omniauthable

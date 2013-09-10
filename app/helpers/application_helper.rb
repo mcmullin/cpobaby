@@ -16,10 +16,14 @@ module ApplicationHelper
     when :success
       'alert-success'
     when :notice
+      'alert-success'
+    when :info
       'alert-info'
     when :warning
       'alert-warning'
     when :error
+      'alert-danger'
+    when :alert
       'alert-danger'
     else
       ''

@@ -6,7 +6,7 @@
   </div>
   <div class="col-lg-4 col-lg-offset-2">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), 
-                        html: { class: 'well' }, defaults: { wrapper_html: { class: 'form-group' } } ) do |f| %>
+                        html: { class: 'well' } ) do |f| %>
       <%= f.error_notification %>
       <fieldset>
         <div class="form-inputs">

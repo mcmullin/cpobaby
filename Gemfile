@@ -24,6 +24,8 @@ gem 'faker'
 
 gem 'mail'
 
+gem 'date_validator'
+
 # gem 'bcrypt-ruby', '~> 3.0.1'
 # gem 'will_paginate'
 # gem 'bootstrap-will_paginate'

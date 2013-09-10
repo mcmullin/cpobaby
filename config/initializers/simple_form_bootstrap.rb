@@ -14,8 +14,8 @@ SimpleForm.setup do |config|
     b.optional :readonly
     
     b.use :label_input
-    b.use :hint,  wrap_with: { tag: 'p', class: 'hint' }
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'hint' }
   end
  
   config.wrappers :prepend, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -26,8 +26,8 @@ SimpleForm.setup do |config|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
         prepend.use :input
       end
-      input.use :hint,  wrap_with: { tag: 'p', class: 'hint' }
       input.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      input.use :hint,  wrap_with: { tag: 'p', class: 'hint' }
     end
   end
  
@@ -39,8 +39,8 @@ SimpleForm.setup do |config|
       input.wrapper tag: 'div', class: 'input-group' do |append|
         append.use :input
       end
-      input.use :hint,  wrap_with: { tag: 'p', class: 'hint' }
       input.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      input.use :hint,  wrap_with: { tag: 'p', class: 'hint' }
     end
   end
  

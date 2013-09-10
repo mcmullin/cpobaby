@@ -66,6 +66,8 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     daemons (1.1.9)
+    date_validator (0.7.0)
+      activemodel (>= 3)
     devise (3.0.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -266,6 +268,7 @@ DEPENDENCIES
   capybara (= 1.1.2)
   childprocess
   coffee-rails
+  date_validator
   devise
   dotenv-rails
   email_spec

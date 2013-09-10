@@ -24,10 +24,10 @@ class Order < ActiveRecord::Base
   has_many :products, through: :line_items
   accepts_nested_attributes_for :line_items, reject_if: lambda { |a| a[:product_id].blank? }, allow_destroy: true
 
-  validates :number, presence: true, confirmation: true, uniqueness: true, format: { with: /\A\d{8}\z/ }
-  validates :number_confirmation, presence: true
-  validates :date, presence: true
-  validates :rep_id, presence: true
+  validates :number, uniqueness: true, format: { with: /\A\d{8}\z/ }, confirmation: true, if: :new_record?
+  validates :number_confirmation, presence: true, if: :new_record?
+  validates :date, date: { after: Proc.new { Date.new(1949) }, message: 'is invalid' }
+  validates :rep_number, format: { with: /\A\d{8}\z/ }
   validates :billing_address, presence: true
   validates :shipping_address, presence: true
 

@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
 
   has_many :line_items
 
-  validates :item_number, presence: true, format: { with: /\A\d{2,4}[-12RCWPHTSDBKG]{0,6}\z/ }, uniqueness: true
+  validates :item_number, uniqueness: true, format: { with: /\A\d{2,4}[-12RCWPHTSDBKG]{0,6}\z/ }
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
@@ -38,9 +38,9 @@ class Product < ActiveRecord::Base
     state :submitted do
       validates :description,          presence: true
       validates :category,             presence: true
-      validates :current_retail_price, presence: true, numericality: true, unless: :discontinued
-      validates :current_cpo,          presence: true, numericality: true, unless: :discontinued
-      validates :current_point_value,  presence: true, numericality: true, unless: :discontinued
+      validates :current_retail_price, numericality: true, unless: :discontinued
+      validates :current_cpo,          numericality: true, unless: :discontinued
+      validates :current_point_value,  numericality: true, unless: :discontinued
       validates :current_retail_price, absence: true, if: :discontinued
       validates :current_cpo,          absence: true, if: :discontinued
       validates :current_point_value,  absence: true, if: :discontinued

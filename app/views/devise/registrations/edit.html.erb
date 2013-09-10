@@ -2,9 +2,9 @@
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, 
-                    class: 'well' }, defaults: { wrapper_html: { class: 'form-group' } } ) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),
+                              html: { method: :put, class: 'well' } ) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <fieldset>
     <div class="form-inputs">
       <div class='row'>
@@ -20,15 +20,16 @@
           <% end %>
         </div>
         <div class='col-lg-4'>
-          <%= f.input :password, label: 'New password', :autocomplete => "off", required: false %>
-          <%= f.input :password_confirmation, label: 'New password confirmation', required: false %>
-          <%= f.input :current_password, 
-                      hint: "we always need your current password to confirm any changes", required: true %>
+          <%= f.input :password, label: 'New password', autocomplete: 'off' %>
+          <%= f.input :password_confirmation, label: 'New password confirmation' %>
+          <%= f.input :current_password, required: true,
+                      hint: "we always need your current password to confirm any updates" %>
         </div>
       </div>
     </div>
     <div class="form-actions">
       <%= f.button :submit, "Update", class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', root_path, class: 'btn btn-default' %>
     </div>
   </fieldset>
 <% end %>
