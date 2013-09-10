@@ -49,6 +49,13 @@ a { color: #446E9B; }
   background-color: #385a7f;
 }
 
+.hint {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #a6a6a6;
+}
+
 
 /* mixins, variables, etc. */
 
@@ -117,16 +124,11 @@ footer {
 // }
 
 #error_explanation {
-  color: #f00;
+  color: #b94a48;
   ul {
     list-style: none;
     margin: 0 0 18px 0;
   }
-}
-
-.field_with_errors {
-  @extend .control-group;
-  @extend .error;
 }
 
 
