@@ -1,12 +1,13 @@
 <div class='sidebar list-group'>
-  <%= link_to 'Home', root_path, class: 'list-group-item' + (params[:controller] == 'static_pages' ? ' active' : '') %>
-  <%= link_to 'Sales Dashboard', '#', class: 'list-group-item' %>
+  <%= link_to 'Sales Dashboard', root_path, class: 'list-group-item' + (params[:controller] == 'static_pages' ? ' active' : '') %>
+  <%= link_to 'News Feed', '#', class: 'list-group-item' %>
   <%= link_to 'Tasks', '#', class: 'list-group-item' %>
   <%= link_to 'Contacts', '#', class: 'list-group-item' %>
   <%= link_to 'Calls', '#', class: 'list-group-item' %>
   <%= link_to 'Appointments', '#', class: 'list-group-item' %>
-  <%= link_to 'Orders', orders_path, class: 'list-group-item' + (params[:controller] == 'orders' ? ' active' : '') %>
   <%= link_to 'Products', products_path, class: 'list-group-item' + (params[:controller] == 'products' ? ' active' : '') %>
-  <%= link_to 'Search Notes', '#', class: 'list-group-item' %>
+  <%= link_to 'Orders', orders_path, class: 'list-group-item' + (params[:controller] == 'orders' ? ' active' : '') %>
+  <%= link_to 'Customers', '#', class: 'list-group-item' %>
   <%= link_to 'Archive', '#', class: 'list-group-item' %>
+  <%= link_to 'Advanced Search', '#', class: 'list-group-item' %>
 </div>

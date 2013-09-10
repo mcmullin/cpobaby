@@ -4,12 +4,12 @@
                          disabled: !f.object.new_record? %>
   </div>
   <div class="col-lg-2">
-    <%= f.input :number_confirmation, label: 'Confirm Order #',
+    <%= f.input :number_confirmation, label: 'Confirm Order #', required: true,
                                       input_html: { value: (f.object.number_confirmation || f.object.number || '') },
                                       disabled: !f.object.new_record? %>
   </div>
   <div class="col-lg-4">
-    <%= f.input :date, as: :string, label: 'Order Date', required: true, hint: "yyyy-mm-dd" %>
+    <%= f.input :date, as: :string, label: 'Order Date', required: true, hint: '"yyyy-mm-dd"' %>
   </div>
   <div class="col-lg-2">
     <p><strong>Office #</strong></p>
