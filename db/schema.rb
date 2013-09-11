@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910205618) do
+ActiveRecord::Schema.define(:version => 20130910231219) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -63,8 +63,14 @@ ActiveRecord::Schema.define(:version => 20130910205618) do
     t.string   "number"
     t.date     "date"
     t.integer  "rep_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "billing_first_name"
+    t.string   "billing_last_name"
+    t.string   "shipping_first_name"
+    t.string   "shipping_last_name"
+    t.string   "email"
+    t.boolean  "ship_to_billing",     :default => true
   end
 
   add_index "orders", ["number"], :name => "index_orders_on_number", :unique => true

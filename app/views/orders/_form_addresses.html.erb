@@ -1,22 +1,45 @@
 <div class="row order-addresses">
+  <div class="col-lg-12">
+    <%= f.input :ship_to_billing, inline_label: true,
+      label: 'Delivery name, address, and phone are the same as billing?' %>
+  </div>
+
   <div class="col-lg-6 billing-address">
     <p><strong>Customer</strong></p>
-    <p>name</p>
+    <div class="row name">
+      <div class="col-lg-6">
+        <%= f.input :billing_first_name, label: 'First name' %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.input :billing_last_name, label: 'Last name' %>
+      </div>
+    </div>
     <p><strong>Billing Address</strong></p>
     <%= f.simple_fields_for :billing_address do |address| %>
       <%= render partial: 'shared/address_fields', locals: {f: address} %>
     <% end %>
-    <p><strong>Phone</strong></p>
+    <p><strong>Billing Phone</strong></p>
     <%= f.simple_fields_for :billing_phone do |phone| %>
       <%= render partial: 'shared/basic_phone_fields', locals: {f: phone} %>
     <% end %>
     <p><strong>Email</strong></p>
-    <p>email</p>
+    <div class="row email">
+      <div class="col-lg-12">
+        <%= f.input :email, label: false %>
+      </div>
+    </div>
   </div>
 
   <div class="col-lg-6 shipping-address">
-    <p><strong>Ship to</strong></p>
-    <p>name</p>
+    <p><strong>Deliver to</strong></p>
+    <div class="row name">
+      <div class="col-lg-6">
+        <%= f.input :shipping_first_name, label: 'First name' %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.input :shipping_last_name, label: 'Last name' %>
+      </div>
+    </div>
     <p><strong>Delivery Address</strong></p>
     <%= f.simple_fields_for :shipping_address do |address| %>
       <%= render partial: 'shared/address_fields', locals: {f: address} %>
@@ -25,7 +48,5 @@
     <%= f.simple_fields_for :shipping_phone do |phone| %>
       <%= render partial: 'shared/basic_phone_fields', locals: {f: phone} %>
     <% end %>
-    <p>Delivery name / address / phone is the same as billing?</p>
-    <p>(checkbox)</p>
   </div>
 </div>
